@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiro.mapper.UserdataMapper" >
+  <resultMap id="BaseResultMap" type="com.shiro.pojo.Userdata" >
+    <id column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="userStatus" property="userstatus" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="userSort" property="usersort" jdbcType="VARCHAR" />
+    <result column="registerTime" property="registertime" jdbcType="VARCHAR" />
+    <result column="connectTime" property="connecttime" jdbcType="VARCHAR" />
+    <result column="userToken" property="usertoken" jdbcType="VARCHAR" />
+    <result column="tokenCreatTime" property="tokencreattime" jdbcType="VARCHAR" />
+    <result column="logoutTime" property="logouttime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uid, userStatus, username, password, userSort, registerTime, connectTime, userToken, 
+    tokenCreatTime, logoutTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiro.pojo.UserdataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from userdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userdata
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from userdata
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiro.pojo.UserdataExample" >
+    delete from userdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiro.pojo.Userdata" >
+    insert into userdata (uid, userStatus, username, 
+      password, userSort, registerTime, 
+      connectTime, userToken, tokenCreatTime, 
+      logoutTime)
+    values (#{uid,jdbcType=VARCHAR}, #{userstatus,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{usersort,jdbcType=VARCHAR}, #{registertime,jdbcType=VARCHAR}, 
+      #{connecttime,jdbcType=VARCHAR}, #{usertoken,jdbcType=VARCHAR}, #{tokencreattime,jdbcType=VARCHAR}, 
+      #{logouttime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiro.pojo.Userdata" >
+    insert into userdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="userstatus != null" >
+        userStatus,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="usersort != null" >
+        userSort,
+      </if>
+      <if test="registertime != null" >
+        registerTime,
+      </if>
+      <if test="connecttime != null" >
+        connectTime,
+      </if>
+      <if test="usertoken != null" >
+        userToken,
+      </if>
+      <if test="tokencreattime != null" >
+        tokenCreatTime,
+      </if>
+      <if test="logouttime != null" >
+        logoutTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null" >
+        #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usersort != null" >
+        #{usersort,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null" >
+        #{registertime,jdbcType=VARCHAR},
+      </if>
+      <if test="connecttime != null" >
+        #{connecttime,jdbcType=VARCHAR},
+      </if>
+      <if test="usertoken != null" >
+        #{usertoken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokencreattime != null" >
+        #{tokencreattime,jdbcType=VARCHAR},
+      </if>
+      <if test="logouttime != null" >
+        #{logouttime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiro.pojo.UserdataExample" resultType="java.lang.Integer" >
+    select count(*) from userdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update userdata
+    <set >
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userstatus != null" >
+        userStatus = #{record.userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usersort != null" >
+        userSort = #{record.usersort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registertime != null" >
+        registerTime = #{record.registertime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.connecttime != null" >
+        connectTime = #{record.connecttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertoken != null" >
+        userToken = #{record.usertoken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tokencreattime != null" >
+        tokenCreatTime = #{record.tokencreattime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logouttime != null" >
+        logoutTime = #{record.logouttime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update userdata
+    set uid = #{record.uid,jdbcType=VARCHAR},
+      userStatus = #{record.userstatus,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      userSort = #{record.usersort,jdbcType=VARCHAR},
+      registerTime = #{record.registertime,jdbcType=VARCHAR},
+      connectTime = #{record.connecttime,jdbcType=VARCHAR},
+      userToken = #{record.usertoken,jdbcType=VARCHAR},
+      tokenCreatTime = #{record.tokencreattime,jdbcType=VARCHAR},
+      logoutTime = #{record.logouttime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiro.pojo.Userdata" >
+    update userdata
+    <set >
+      <if test="userstatus != null" >
+        userStatus = #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usersort != null" >
+        userSort = #{usersort,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null" >
+        registerTime = #{registertime,jdbcType=VARCHAR},
+      </if>
+      <if test="connecttime != null" >
+        connectTime = #{connecttime,jdbcType=VARCHAR},
+      </if>
+      <if test="usertoken != null" >
+        userToken = #{usertoken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokencreattime != null" >
+        tokenCreatTime = #{tokencreattime,jdbcType=VARCHAR},
+      </if>
+      <if test="logouttime != null" >
+        logoutTime = #{logouttime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiro.pojo.Userdata" >
+    update userdata
+    set userStatus = #{userstatus,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      userSort = #{usersort,jdbcType=VARCHAR},
+      registerTime = #{registertime,jdbcType=VARCHAR},
+      connectTime = #{connecttime,jdbcType=VARCHAR},
+      userToken = #{usertoken,jdbcType=VARCHAR},
+      tokenCreatTime = #{tokencreattime,jdbcType=VARCHAR},
+      logoutTime = #{logouttime,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>

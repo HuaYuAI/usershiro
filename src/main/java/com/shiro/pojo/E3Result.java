@@ -15,24 +15,24 @@ public class E3Result implements Serializable {
     // 响应中的数据
     private Object data;
 
-    public static com.sxh.common.utils.E3Result build(Integer status, String msg, Object data) {
-        return new com.sxh.common.utils.E3Result(status, msg, data);
+    public static E3Result build(Integer status, String msg, Object data) {
+        return new E3Result(status, msg, data);
     }
 
-    public static com.sxh.common.utils.E3Result ok(Object data) {
-        return new com.sxh.common.utils.E3Result(data);
+    public static E3Result ok(Object data) {
+        return new E3Result(data);
     }
 
-    public static com.sxh.common.utils.E3Result ok() {
-        return new com.sxh.common.utils.E3Result(null);
+    public static E3Result ok() {
+        return new E3Result(null);
     }
 
     public E3Result() {
 
     }
 
-    public static com.sxh.common.utils.E3Result build(Integer status, String msg) {
-        return new com.sxh.common.utils.E3Result(status, msg, null);
+    public static E3Result build(Integer status, String msg) {
+        return new E3Result(status, msg, null);
     }
 
     public E3Result(Integer status, String msg, Object data) {

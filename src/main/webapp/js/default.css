@@ -126,6 +126,7 @@ a:hover {
 	font-weight:bold;
 	height:60px;
 	line-height:40px;
+	align-items:center;
 }
 .loginInfo {
 	border:0px solid red;

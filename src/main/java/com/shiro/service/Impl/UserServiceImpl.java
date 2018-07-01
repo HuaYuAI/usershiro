@@ -1,5 +1,6 @@
 package com.shiro.service.Impl;
 
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shiro.pojo.EasyUIDatagridRequest;
@@ -13,7 +14,7 @@ import com.shiro.pojo.Userdata;
 
 import java.util.List;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserdataMapper userdataMapper;
@@ -31,18 +32,19 @@ public class UserServiceImpl implements UserService{
 		return userdataMapper.deleteByPrimaryKey(user.getUid());
 	}
 
-
-	public EasyUIDatagridResponse selectAll(EasyUIDatagridRequest es) {
+	@Override
+	public EasyUIDatagridResponse userList(EasyUIDatagridRequest es) {
 		EasyUIDatagridResponse rs = new EasyUIDatagridResponse();
 		//使用pageHelper
 		//开始分页查询。aop
 		PageHelper.startPage(es.getPage(),es.getRows());
-		List<Userdata> items = userdataMapper.selectByExample(null);
-		PageInfo<Userdata> pg = new PageInfo<Userdata>(items);
+		List<Userdata> userdata = userdataMapper.selectByExample(null);
+		PageInfo<Userdata> pg = new PageInfo<Userdata>(userdata);
 		//总条数
 		rs.setTotal(pg.getTotal());
 		//分页记录
 		rs.setRows(pg.getList());
 		return rs;
 	}
+
 }

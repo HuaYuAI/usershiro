@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宜立方商城后台管理系统</title>
+<title>MQTT移信后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="css/e3.css" />
@@ -22,34 +22,44 @@
 <body class="easyui-layout">
     <!-- 头部标题 -->
 	<div data-options="region:'north',border:false" style="height:60px; padding:5px; background:#F3F3F3"> 
-		<span class="northTitle">MQTT移信台管理系统</span>
+		<span class="northTitle">MQTT移信后台管理系统</span>
 	    <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
 	</div>
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
     	<ul id="menu" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;">
+			<shiro:hasRole name="admin">
+				<li>
+					<span>工作人员</span>
+					<ul>
+						<%--<shiro:hasPermission name="addItem1111">--%>
+						<li data-options="attributes:{'url':'sys-list'}">设置工作人员权限</li>
+						<%--</shiro:hasPermission>--%>
+						<%--<shiro:hasRole name="zongjingli">--%>
+						<li data-options="attributes:{'url':'sys-list'}">查看工作人员</li>
+						<%--</shiro:hasRole>--%>
+					</ul>
+				</li>
+			</shiro:hasRole>
          	<li>
-         		<span>账号管理</span>
+         		<span>管理用户</span>
          		<ul>
-					<%--<shiro:hasPermission name="addItem1111">--%>
-	         			<li data-options="attributes:{'url':'item-add'}">新增用户</li>
-					<%--</shiro:hasPermission>--%>
+
+
+
 					<%--<shiro:hasRole name="zongjingli">--%>
-	         			<li data-options="attributes:{'url':'item-list'}">查询用户</li>
+	         			<li data-options="attributes:{'url':'item-list'}">添加白名单</li>
 					<%--</shiro:hasRole>--%>
-	         		<li data-options="attributes:{'url':'item-param-list'}">规格参数</li>
+	         			<li data-options="attributes:{'url':'item-param-list'}">添加黑名单</li>
+						<li data-options="attributes:{'url':'item-param-list'}">重置用户名密码</li>
 	         	</ul>
          	</li>
          	<li>
-         		<span>网站内容管理</span>
+         		<span>查询用户</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
-	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
-	         	</ul>
-         	</li>
-         	<li>
-         		<span>索引库管理</span>
-         		<ul>
-	         		<li data-options="attributes:{'url':'index-item'}">solr索引库维护</li>
+	         		<li data-options="attributes:{'url':'user-list'}">全部用户</li>
+	         		<li data-options="attributes:{'url':'content'}">白名单用户</li>
+					<li data-options="attributes:{'url':'content'}">黑名单用户</li>
+					<li data-options="attributes:{'url':'content'}">正常用户</li>
 	         	</ul>
          	</li>
          </ul>

@@ -19,5 +19,5 @@ public interface UserService {
     public int delete(Userdata user) ;
 
     //查询所有用户
-    public EasyUIDatagridResponse selectAll(EasyUIDatagridRequest es) ;
+    EasyUIDatagridResponse userList(EasyUIDatagridRequest es);
 }

@@ -32,14 +32,28 @@
     </div>
     
     <script type="text/javascript">
-    	$("#login").click(function(){
-    		var username = $("[name=username]").val();
-    		var password = $("[name=password]").val();
-    		
 
-    		$("#frm").submit();
-    		//window.location.href="/rest/page/index";
+    	$("#login").click(function(){
+			 $('#frm').form('submit', {
+					url: "loginSystem",
+					onSubmit: function(){
+						var username = $("[name=username]").val();
+						var password = $("[name=password]").val();
+					},
+					success:function(data){
+						if(data.status == 222){
+                            $.messager.alert('警告','用户名或者密码错误');
+
+                        }else {
+                            window.location.href="/index";
+						}
+			 	}
+			 });
+    		//
     	});
-    </script>
+
+
+
+	</script>
 </body>
 </html>

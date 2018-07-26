@@ -1,5 +1,7 @@
 package com.shiro.service;
 
+import com.shiro.pojo.EasyUIDatagridRequest;
+import com.shiro.pojo.EasyUIDatagridResponse;
 import com.shiro.pojo.Sysuser;
 import com.shiro.pojo.Userdata;
 
@@ -8,4 +10,6 @@ import com.shiro.pojo.Userdata;
  */
 public interface SysuserService {
     Sysuser findByUsername(String username);
+
+    EasyUIDatagridResponse sysuserList(EasyUIDatagridRequest es);
 }

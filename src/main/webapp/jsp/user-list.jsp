@@ -5,9 +5,10 @@
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'uid',align:'center',width:200">用户ID</th>
-            <th data-options="field:'username',align:'center',width:150,formatter:function(value,row){
-                return '<a href=\'#\' onclick=\'openDialog('+row.id+')\'>'+value+'</a>'
-                }">用户名</th>
+            <th data-options="field:'username',align:'center',width:150">用户名</th>
+            <%--,formatter:function(value,row){--%>
+            <%--return '<a href=\'#\' onclick=\'openDialog('+row.id+')\'>'+value+'</a>'--%>
+            <%--}--%>
             <th data-options="field:'usersort',align:'center',width:100,formatter:function(value){
                 if(value==0){return '正常用户'+value}else if(value==1){return '白名单'+value}else{return '黑名单用户'+value}
                 }">用户状态</th>

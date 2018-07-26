@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="easyui-datagrid" id="itemList" title="全部用户"
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/item/list',method:'get',pageSize:30,toolbar:toolbar">
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/sysuserList',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'id',align:'center',width:200">员工ID</th>
-            <th data-options="field:'title',align:'center',width:150,formatter:function(value,row){
-                return '<a href=\'#\' onclick=\'openDialog('+row.id+')\'>'+value+'</a>'
-                }">员工姓名</th>
-            <th data-options="field:'cid',align:'center',width:100">员工部门</th>
-            <th data-options="field:'created',width:230,align:'center',formatter:E3.formatDateTime">员工权限</th>
+            <th data-options="field:'username',align:'center',width:150">员工姓名</th>
+            <th data-options="field:'organization_id',align:'center',width:100">员工部门</th>
+            <th data-options="field:'role_ids',width:230,align:'center'">员工权限</th>
         </tr>
     </thead>
 </table>

@@ -31,20 +31,7 @@ public class UserController {
         return "hello springboot";
     }
 
-    @RequestMapping(value = "/loginSystem", method = RequestMethod.POST)
-    public E3Result loginSystem(String username, String password, HttpServletRequest request){
-        //创建shiro使用的subject主体
-        Subject subject = SecurityUtils.getSubject();
-        //生成token值
-        UsernamePasswordToken token =
-                new UsernamePasswordToken(username, password);
-        try {
-            subject.login(token);
-        } catch (Exception e) {
-            return  E3Result.build(222,"用户名或者密码错误");
-        }
-        return E3Result.ok();
-    }
+
 
 
 /*    public EasyUIDatagridResponse selectAll(String page,String rows){

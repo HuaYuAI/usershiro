@@ -13,7 +13,10 @@ public class EasyUITreeResponse implements Serializable {
     private Long id;
     private String text;
     private String state;
-    private String[] children;
+    private EasyUITreeResponse[] children;
+    private String iconCls;
+    //private String attributes;
+    private Attributes attributes;
 
     public Long getId() {
         return id;
@@ -46,11 +49,27 @@ public class EasyUITreeResponse implements Serializable {
         }
     }
 
-    public String[] getChildren() {
+    public EasyUITreeResponse[] getChildren() {
         return children;
     }
 
-    public void setChildren(String[] children) {
+    public void setChildren(EasyUITreeResponse[] children) {
         this.children = children;
+    }
+
+    public String getIconCls() {
+        return iconCls;
+    }
+
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
+    }
+
+    public Attributes getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
     }
 }

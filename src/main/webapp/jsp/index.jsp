@@ -26,16 +26,18 @@
 	    <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
 	</div>
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
+		<ul id="tt" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;"></ul>
+
     	<ul id="menu" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;">
 			<shiro:hasRole name="admin">
 				<li>
 					<span>工作人员</span>
 					<ul>
 						<%--<shiro:hasPermission name="addItem1111">--%>
-						<li data-options="attributes:{'url':'sys-list'}">设置工作人员权限</li>
+						<li data-options="attributes:{'url':'sysuser-list'}">设置工作人员权限</li>
 						<%--</shiro:hasPermission>--%>
 						<%--<shiro:hasRole name="zongjingli">--%>
-						<li data-options="attributes:{'url':'sys-list'}">查看工作人员</li>
+						<li data-options="attributes:{'url':'sysuser-list'}">查看工作人员</li>
 						<%--</shiro:hasRole>--%>
 					</ul>
 				</li>
@@ -43,9 +45,6 @@
          	<li>
          		<span>管理用户</span>
          		<ul>
-
-
-
 					<%--<shiro:hasRole name="zongjingli">--%>
 	         			<li data-options="attributes:{'url':'item-list'}">添加白名单</li>
 					<%--</shiro:hasRole>--%>
@@ -78,7 +77,35 @@
 	</div>
 <script type="text/javascript">
 $(function(){
-	$('#menu').tree({
+    $('#tt').tree({
+        url:'sysTree',
+        loadFilter: function(data){
+            debugger;
+			if (data.d){
+				return data.d;
+			} else {
+			    debugger;
+				return data;
+			}
+		},
+        onClick: function(node){
+            if($('#tt').tree("isLeaf",node.target)){
+                var tabs = $("#tabs");
+                var tab = tabs.tabs("getTab",node.text);
+                if(tab){
+                    tabs.tabs("select",node.text);
+                }else{
+                    tabs.tabs('add',{
+                        title:node.text,
+                        href: node.attributes.url,
+                        closable:true,
+                        bodyCls:"content"
+                    });
+                }
+            }
+        }
+	});
+    $('#menu').tree({
 		onClick: function(node){
 			if($('#menu').tree("isLeaf",node.target)){
 				var tabs = $("#tabs");

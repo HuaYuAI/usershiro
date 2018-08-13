@@ -182,8 +182,18 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.9</version>
 		</dependency>
+		<dependency>
+			<groupId>com.shiro.common</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+        <dependency>
+            <groupId>com.e3</groupId>
+            <artifactId>e3-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 
 </project>

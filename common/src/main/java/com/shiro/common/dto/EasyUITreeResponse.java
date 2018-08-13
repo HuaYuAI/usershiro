@@ -1,6 +1,7 @@
-package com.shiro.pojo;
+package com.shiro.common.dto;
 
 import java.io.Serializable;
+import java.util.jar.Attributes;
 
 /**
  * Created by HuaYu on 2018/2/18.

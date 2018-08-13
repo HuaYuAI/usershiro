@@ -1,6 +1,10 @@
 package com.shiro.controller;
 
 import com.shiro.pojo.*;
+import com.shiro.pojo.E3Result;
+import com.shiro.pojo.EasyUIDatagridRequest;
+import com.shiro.pojo.EasyUIDatagridResponse;
+import com.shiro.common.dto.*;
 import com.shiro.service.SysuserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -41,7 +45,7 @@ public class SysController {
         return rs;
     }
     @RequestMapping(value = "/sysTree", method = RequestMethod.POST)
-    public EasyUITreeResponse [] systTree(EasyUIDatagridRequest es){
+    public EasyUITreeResponse[] systTree(EasyUIDatagridRequest es){
         EasyUITreeResponse [] rs =new EasyUITreeResponse[1];
         EasyUITreeResponse [] rs3 =new EasyUITreeResponse[1];
         EasyUITreeResponse rs1 = new EasyUITreeResponse();
@@ -56,7 +60,7 @@ public class SysController {
         rs2.setIconCls("tree-folder");
         Attributes attributes = new Attributes();
         attributes.setUrl("list");
-        rs2.setAttributes(attributes);
+        // rs2.setAttributes(attributes);
         rs3[0]=rs2;
         rs1.setChildren(rs3);
         rs[0]=rs1;

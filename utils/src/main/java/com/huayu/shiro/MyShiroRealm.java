@@ -1,9 +1,8 @@
 package com.huayu.shiro;
 
-import com.shiro.pojo.Sysuser;
-import com.shiro.pojo.Userdata;
-import com.shiro.service.SysroleService;
-import com.shiro.service.SysuserService;
+import com.huayu.shiro.pojo.Sysuser;
+import com.huayu.shiro.service.SysroleService;
+import com.huayu.shiro.service.SysuserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

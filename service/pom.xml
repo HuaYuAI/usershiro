@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.huayu.shiro.service</groupId>
-	<artifactId>service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>service</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
+		<artifactId>usershiro</artifactId>
+		<groupId>com.huayu.shiro</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+<!--	<parent>
 		<groupId>com.huayu.shiro</groupId>
 		<artifactId>usershiro</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+	</parent>-->
+
+	<modelVersion>4.0.0</modelVersion>
+
+<!--	<groupId>com.huayu.shiro.service</groupId>
+	<artifactId>service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>-->
+
+	<artifactId>service</artifactId>
+
+<!--	<name>service</name>-->
+<!--	<description>Demo project for Spring Boot</description>-->
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +57,7 @@
 		</dependency>
 
 	</dependencies>
-
+<!--
 	<build>
 		<plugins>
 			<plugin>
@@ -55,7 +65,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 
 </project>

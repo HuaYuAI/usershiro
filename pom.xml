@@ -18,7 +18,7 @@
 	<packaging>pom</packaging>
 
 	<name>usershiro</name>
-	<description>Demo project for Spring Boot</description>
+	<description>shiro user</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -39,42 +39,42 @@
 
 	<dependencies>
 
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!-- jstl -->
-		<dependency>
+<!--		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!-- mysql的驱动-->
-		<dependency>
+<!--		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
+		</dependency>-->
 		<!-- mybatis的依赖-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.2.0</version>
-		</dependency>
+		</dependency>-->
 
 		<!--启动自带配置-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency>-->
 		<!--启动自带配置-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
@@ -87,10 +87,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!--热部署使用-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
@@ -99,7 +99,7 @@
 			<groupId>net.sourceforge.nekohtml</groupId>
 			<artifactId>nekohtml</artifactId>
 			<version>1.9.22</version>
-		</dependency>
+		</dependency>-->
 
 		<!--MyBatis扫描用MapperScaner-->
 		<dependency>
@@ -165,7 +165,7 @@
     </dependencies>
 
 
-	<build>
+<!--	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -177,7 +177,7 @@
 				<configuration>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<!-- 配置打war包插件-->
 			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -212,8 +212,8 @@
 					</webApp>
 				</configuration>
 			</plugin>-->
-		</plugins>
-	</build>
+<!--		</plugins>
+	</build>-->
 
 
 </project>

@@ -3,12 +3,7 @@ package com.huayu.shiro.common.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Properties;
 
 /**
  * Created by HuaYu on 2018/2/18.

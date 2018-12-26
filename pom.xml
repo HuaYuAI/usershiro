@@ -32,6 +32,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<swaggwer.version>2.7.0</swaggwer.version>
+		<spring-shiro.version>1.4.0</spring-shiro.version>
 		<common.alibaba.druid.version>1.0.9</common.alibaba.druid.version>
 		<common.alibaba.fastjson.version>1.2.8</common.alibaba.fastjson.version>
 	</properties>
@@ -117,19 +118,19 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
-            <version>1.4.0</version>
+            <version>${spring-shiro.version}</version>
         </dependency>
 
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-web</artifactId>
-			<version>1.4.0</version>
+			<version>${spring-shiro.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-			<version>1.4.0</version>
+			<version>${spring-shiro.version}</version>
 		</dependency>
 
 		<dependency>

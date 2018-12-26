@@ -8,19 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-<!--	<parent>
-		<groupId>com.huayu.shiro</groupId>
-		<artifactId>usershiro</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-	</parent>-->
-
 	<modelVersion>4.0.0</modelVersion>
-
-<!--	<groupId>com.huayu.shiro</groupId>
-	<artifactId>controller</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>-->
 
 	<artifactId>controller</artifactId>
 	<name>controller</name>

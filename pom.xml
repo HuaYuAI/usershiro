@@ -52,10 +52,11 @@
 		</dependency>-->
 
 		<!-- mysql的驱动-->
-<!--		<dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency>-->
+			<version>${mysql.version}</version>
+		</dependency>
 		<!-- mybatis的依赖-->
 <!--		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>

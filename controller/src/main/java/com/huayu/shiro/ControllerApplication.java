@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan
-@MapperScan("com.shiro.mapper")
+/*@ServletComponentScan
+@MapperScan("com.shiro.mapper")*/
 public class ControllerApplication {
 
 	public static void main(String[] args) {

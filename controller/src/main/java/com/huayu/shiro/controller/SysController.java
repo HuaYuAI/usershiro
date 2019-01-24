@@ -1,15 +1,5 @@
 package com.huayu.shiro.controller;
 
-
-import com.huayu.shiro.common.dto.E3Result;
-import com.huayu.shiro.common.dto.EasyUIDatagridRequest;
-import com.huayu.shiro.common.dto.EasyUIDatagridResponse;
-import com.huayu.shiro.common.dto.EasyUITreeResponse;
-import com.huayu.shiro.pojo.Attributes;
-import com.huayu.shiro.service.SysuserService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class SysController {
 
-    @Autowired
+   /* @Autowired
     SysuserService sysuserService;
 
     @RequestMapping(value = "/loginSystem", method = RequestMethod.POST)
@@ -67,5 +57,5 @@ public class SysController {
         rs1.setChildren(rs3);
         rs[0]=rs1;
         return rs;
-    }
+    }*/
 }

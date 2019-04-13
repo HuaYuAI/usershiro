@@ -1,4 +1,4 @@
-package com.huayu.shiro.controller;
+package com.huayu.shiro.controller.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class JspDiapachController {
 
-    @RequestMapping("/{page}")
+/*    @RequestMapping("/{page}")
     public ModelAndView jspDiapach(@PathVariable String page){
         ModelAndView modelAndView = new ModelAndView(page);
         modelAndView.setViewName(page);
         return modelAndView;
-    }
+    }*/
 }

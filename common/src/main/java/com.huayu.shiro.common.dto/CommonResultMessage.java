@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @ApiModel(value="ResultMessage",description="返回类型")
 @Data
-public class ResultMessage <T> {
+public class CommonResultMessage <T> {
 
     @ApiModelProperty(value="状态信息",name="status")
     private String status;

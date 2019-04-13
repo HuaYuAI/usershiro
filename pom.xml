@@ -13,6 +13,7 @@
 		<module>mapper</module>
 		<module>service</module>
 		<module>controller</module>
+		<module>user-manager</module>
 	</modules>
 
 	<packaging>pom</packaging>
@@ -33,6 +34,7 @@
 		<java.version>1.8</java.version>
 		<swaggwer.version>2.7.0</swaggwer.version>
 		<spring-shiro.version>1.4.0</spring-shiro.version>
+		<projectlombok.version>1.16.18</projectlombok.version>
 		<common.alibaba.druid.version>1.0.9</common.alibaba.druid.version>
 		<common.alibaba.fastjson.version>1.2.8</common.alibaba.fastjson.version>
 	</properties>
@@ -171,7 +173,11 @@
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${swaggwer.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${projectlombok.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

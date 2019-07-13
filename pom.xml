@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.huayu.shiro</groupId>
-	<artifactId>usershiro</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
-	<modules>
-		<module>common</module>
-		<module>utils</module>
-		<module>mapper</module>
-		<module>service</module>
-		<module>controller</module>
-		<module>user-manager</module>
-	</modules>
-
-	<packaging>pom</packaging>
-
-	<name>usershiro</name>
-	<description>shiro user</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -28,7 +11,28 @@
 		<relativePath/>
 	</parent>
 
+	<groupId>com.huayu.shiro</groupId>
+	<artifactId>usershiro</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>usershiro</name>
+	<description>基于springcloud和shiro的用户权限管理</description>
+
+	<modules>
+		<module>common</module>
+		<module>utils</module>
+		<module>mapper</module>
+		<module>service</module>
+		<module>controller</module>
+        <module>user-service-api</module>
+		<module>user-service-impl</module>
+		<module>user-service-consumer</module>
+		<module>user-service-provider</module>
+	</modules>
+
 	<properties>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -39,8 +43,32 @@
 		<common.alibaba.fastjson.version>1.2.8</common.alibaba.fastjson.version>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
+
 			<dependency>
 				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
@@ -50,6 +78,19 @@
 				<scope>import</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.RELEASE<!--${spring-cloud.version}--></version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-hystrix</artifactId>
+				<version>1.4.6.RELEASE</version>
+			</dependency>
 	<!--		<dependency>
 				<groupId>org.apache.tomcat.embed</groupId>
 				<artifactId>tomcat-embed-jasper</artifactId>
@@ -178,8 +219,23 @@
 				<artifactId>lombok</artifactId>
 				<version>${projectlombok.version}</version>
 			</dependency>
+
+
+
+
 		</dependencies>
+
+
+
 	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 <!--	<build>
 		<plugins>

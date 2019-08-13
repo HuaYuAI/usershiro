@@ -1,4 +1,4 @@
-package com.huayu.druid;
+package com.huayu.shiro.config.druid;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 

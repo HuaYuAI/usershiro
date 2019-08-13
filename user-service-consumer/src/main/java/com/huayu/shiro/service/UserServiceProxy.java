@@ -12,9 +12,9 @@ import java.util.Collection;
  * Created by huayu on 2019/6/1.
  */
 @Service
-public class UserServiceProxy implements UserService {
+public class UserServiceProxy /*implements UserService */{
 
-    private static final String PROVIDER_SERVER_URL_PREFIX="http://springcloud-erurka-provider/";
+/*    private static final String PROVIDER_SERVER_URL_PREFIX="http://springcloud-erurka-provider/";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -28,5 +28,5 @@ public class UserServiceProxy implements UserService {
     @Override
     public Collection<User> findAll() {
         return restTemplate.getForObject(PROVIDER_SERVER_URL_PREFIX+"/user/list",Collection.class);
-    }
+    }*/
 }

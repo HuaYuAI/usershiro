@@ -1,7 +1,6 @@
-package com.huayu.druid;
+package com.huayu.shiro.config.druid;
 
 import com.alibaba.druid.support.http.WebStatFilter;
-import javassist.tools.web.Webserver;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;

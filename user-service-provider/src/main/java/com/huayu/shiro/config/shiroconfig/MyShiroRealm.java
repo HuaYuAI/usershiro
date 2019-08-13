@@ -1,4 +1,4 @@
-package com.huayu.shiro;
+package com.huayu.shiro.config.shiroconfig;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

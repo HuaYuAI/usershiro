@@ -7,14 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
-        <module name="controller" />
-        <module name="mapper" />
-        <module name="service" />
         <module name="user-service-api" />
         <module name="user-service-consumer" />
         <module name="user-service-impl" />
         <module name="user-service-provider" />
-        <module name="utils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,4 +1,4 @@
-package com.huayu.shiro;
+package com.huayu.shiro.config.shiroconfig;
 
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

@@ -1,4 +1,4 @@
-package com.huayu.shiro;
+package com.huayu.shiro.config.shiroconfig;
 
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;

@@ -1,0 +1,15 @@
+server:
+  port: 4475
+spring:
+  application:
+    name: usermessage-consumer
+# 安全失效
+management:
+  security:
+    enabled: false
+# 取消服务器自我注册
+eureka:
+# 服务用于注册
+  client:
+    serviceUrl:
+      defaultZone: ttp://localhost:9000/eureka,http://localhost:9091/eureka

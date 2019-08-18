@@ -1,40 +1,20 @@
 server:
   port: 8888
-
 management:
-  context-path: /admin
-  
-logging:
-  level:
-    com.netflix.discovery: 'OFF'
-    org.springframework.cloud: 'DEBUG'
-    
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    statusPageUrlPath: /admin/info
-    healthCheckUrlPath: /admin/health
-
+  security:
+    enabled: false
+# 服务端实现
 spring:
+  application:
+    name: configserver
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/HuaYuAI/config-repo
-          timeout: 4
-          skipSslValidation: false
-          username: trolley
-          password: strongpassword
-
----
-spring:
-  profiles: cloud
-eureka:
-  password: password
-  instance:
-    hostname: ${vcap.application.uris[0]}
-    nonSecurePort: 80
-  client:
-    serviceUrl:
-      defaultZone: ${vcap.services.${PREFIX:}eureka.credentials.uri:http://user:${eureka.password:}@${PREFIX:}eureka.${application.domain:cfapps.io}}/eureka/
+#           uri: file:///D:/workspace/config-repo
+         uri: https://github.com/HuaYuAI/config-repo
+#          timeout: 4
+#          skipSslValidation: false
+#          username: trolley
+#          password: strongpassword
 

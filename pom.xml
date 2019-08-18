@@ -5,16 +5,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>yd-yx-config</module>
+		<module>yd-yx-gateway</module>
+		<module>yd-yx-usermessage-api</module>
+		<module>yd-yx-usermessage-provider</module>
+		<module>yd-yx-usermessage-consumer</module>
 	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.1.BUILD-SNAPSHOT</version>
+		<version>1.5.22.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.huayu.shiro</groupId>
+	<groupId>com.yd.yx</groupId>
 	<artifactId>usershiro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -65,13 +69,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+<!--			<plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
 				<configuration>
 					<failOnNoGitDirectory>false</failOnNoGitDirectory>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<!--skip deploy (this is just a test module) -->
 				<artifactId>maven-deploy-plugin</artifactId>

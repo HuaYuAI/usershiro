@@ -1,0 +1,17 @@
+server:
+  port: 1111
+spring:
+  application:
+    name: usermessage-provicer
+# 安全失效
+management:
+  security:
+    enabled: false
+# 取消服务器自我注册
+eureka:
+  server:
+    port: 9090
+# 服务用于注册
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka

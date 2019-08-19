@@ -1,7 +1,7 @@
 package com.yd.yx.userclient.service;
 
-import com.yd.yx.userclientapi.dto.ResultDTO;
-import com.yd.yx.userclientapi.dto.UserMessageDTO;
+import com.yd.yx.userclientapi.dto.base.BaseResultDTO;
+import com.yd.yx.userclientapi.dto.user.request.*;
 import com.yd.yx.userclientapi.service.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,36 @@ public class UserServiceProxy implements UserMessageService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public ResultDTO save(UserMessageDTO user){
-        restTemplate.postForObject(PROVIDER_SERVER_URL_PREFIX+"user/save"
-                ,user,ResultDTO.class);
-        return new ResultDTO();
+
+    @Override
+    public BaseResultDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public BaseResultDTO registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
+        restTemplate.postForObject(PROVIDER_SERVER_URL_PREFIX+"user/registered"
+                ,registeredUserMessageRequestDTO,BaseResultDTO.class);
+        return new BaseResultDTO();
+    }
+
+    @Override
+    public BaseResultDTO updateUserMessage(UpdateUserMessageRequestDTO updateUserMessageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public BaseResultDTO userContent(ContentUserMessageRequestDTO contentUserMessageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public BaseResultDTO userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public BaseResultDTO userLogOut(LogOutUserMessageRequestDTO logOutUserMessageRequestDTO) {
+        return null;
     }
 }

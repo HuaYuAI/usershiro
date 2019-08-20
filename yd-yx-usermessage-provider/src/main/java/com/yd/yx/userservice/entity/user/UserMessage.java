@@ -1,8 +1,8 @@
 package com.yd.yx.userservice.entity.user;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Id;
 import javax.persistence.Entity;
 import java.util.Date;
 
@@ -25,11 +25,11 @@ public class UserMessage {
 
     private String password;
 
-    private String usersort;
+    private String salt;
 
     private Date registertime;
 
-    private String logintime;
+    private Date logintime;
 
     private String logouttime;
 }

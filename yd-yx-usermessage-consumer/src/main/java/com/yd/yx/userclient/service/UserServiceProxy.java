@@ -1,6 +1,6 @@
 package com.yd.yx.userclient.service;
 
-import com.yd.yx.userclientapi.dto.base.BaseResultDTO;
+import com.yd.yx.userclientapi.dto.base.BaseResponseDTO;
 import com.yd.yx.userclientapi.dto.user.request.*;
 import com.yd.yx.userclientapi.service.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,34 +20,34 @@ public class UserServiceProxy implements UserMessageService {
 
 
     @Override
-    public BaseResultDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO) {
+    public BaseResponseDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO) {
         return null;
     }
 
     @Override
-    public BaseResultDTO registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
+    public BaseResponseDTO registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
         restTemplate.postForObject(PROVIDER_SERVER_URL_PREFIX+"user/registered"
-                ,registeredUserMessageRequestDTO,BaseResultDTO.class);
-        return new BaseResultDTO();
+                ,registeredUserMessageRequestDTO,BaseResponseDTO.class);
+        return new BaseResponseDTO();
     }
 
     @Override
-    public BaseResultDTO updateUserMessage(UpdateUserMessageRequestDTO updateUserMessageRequestDTO) {
+    public BaseResponseDTO updateUserMessage(UpdateUserMessageRequestDTO updateUserMessageRequestDTO) {
         return null;
     }
 
     @Override
-    public BaseResultDTO userContent(ContentUserMessageRequestDTO contentUserMessageRequestDTO) {
+    public BaseResponseDTO userContent(ContentUserMessageRequestDTO contentUserMessageRequestDTO) {
         return null;
     }
 
     @Override
-    public BaseResultDTO userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
+    public BaseResponseDTO userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
         return null;
     }
 
     @Override
-    public BaseResultDTO userLogOut(LogOutUserMessageRequestDTO logOutUserMessageRequestDTO) {
+    public BaseResponseDTO userLogOut(LogOutUserMessageRequestDTO logOutUserMessageRequestDTO) {
         return null;
     }
 }

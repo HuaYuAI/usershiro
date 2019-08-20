@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by huayu on 2019/8/19.
  */
 @Data
-public class BaseRequest {
+public class BaseRequestDTO {
 
     private int deviceType;
 }

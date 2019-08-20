@@ -9,7 +9,8 @@
 		<module>yd-yx-usermessage-api</module>
 		<module>yd-yx-usermessage-provider</module>
 		<module>yd-yx-usermessage-consumer</module>
-	</modules>
+        <module>yd-yx-common</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -32,7 +33,9 @@
 		<start-class>demo.ConfigServerApplication</start-class>
 		<java.version>1.8</java.version>
 		<docker.image.prefix>springcloud</docker.image.prefix>
+		<commons-lang3.version>3.7</commons-lang3.version>
 		<projectlombok.version>1.16.20</projectlombok.version>
+		<swaggwer.version>2.7.0</swaggwer.version>
 	</properties>
 
 	<dependencyManagement>
@@ -44,12 +47,31 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${projectlombok.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swaggwer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swaggwer.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 

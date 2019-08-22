@@ -4,14 +4,12 @@ package com.yd.yx.userservice.service;
  * Created by huayu on 2019/8/18.
  */
 import com.yd.yx.common.exception.CommonException;
-import com.yd.yx.userclientapi.dto.base.BaseResponseDTO;
+import com.yd.yx.common.dto.BaseResponseDTO;
 import com.yd.yx.userclientapi.dto.user.request.*;
 import com.yd.yx.userclientapi.dto.user.response.RegisteredUserMessageResponseDTO;
 import com.yd.yx.userclientapi.service.UserMessageService;
-import com.yd.yx.userservice.constant.UserStatusEnum;
 import com.yd.yx.userservice.dao.user.UserMessageRepository;
 import com.yd.yx.userservice.entity.user.UserMessage;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

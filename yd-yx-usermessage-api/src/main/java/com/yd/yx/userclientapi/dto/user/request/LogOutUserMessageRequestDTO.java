@@ -1,6 +1,6 @@
 package com.yd.yx.userclientapi.dto.user.request;
 
-import com.yd.yx.userclientapi.dto.base.BaseRequestDTO;
+import com.yd.yx.common.dto.BaseRequestDTO;
 
 import java.io.Serializable;
 

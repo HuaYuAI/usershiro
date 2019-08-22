@@ -1,6 +1,6 @@
 package com.yd.yx.userclientapi.service;
 
-import com.yd.yx.userclientapi.dto.base.BaseResponseDTO;
+import com.yd.yx.common.dto.BaseResponseDTO;
 import com.yd.yx.userclientapi.dto.user.request.*;
 
 /**

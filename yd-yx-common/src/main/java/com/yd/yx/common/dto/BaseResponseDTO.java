@@ -1,4 +1,4 @@
-package com.yd.yx.userclientapi.dto.base;
+package com.yd.yx.common.dto;
 
 import lombok.Data;
 /**

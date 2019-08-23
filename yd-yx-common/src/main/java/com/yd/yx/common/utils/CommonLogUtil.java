@@ -1,5 +1,6 @@
 package com.yd.yx.common.utils;
 
+import com.yd.yx.common.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -128,34 +129,34 @@ public class CommonLogUtil {
                 .append((e != null ? e.toString() : StringUtils.trimToEmpty(errorMsg))).toString();
     }
 
-    public static BaseResponse<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
+    public static BaseResponseDTO<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
                                                                    String errorMsg, Exception e, String requestId, String dynamicCode, String dynamicMessage) {
         if (logger.isErrorEnabled()) {
             logger.error(buildWarnErrorLog(className, methodName, errorCode, errorMsg, e));
         }
-        final BaseResponse<Void> badResponse = BaseResponse.createFailResult(errorCode, errorMsg);
+        final BaseResponseDTO<Void> badResponse = BaseResponseDTO.createFailResult(errorCode, errorMsg);
         badResponse.setRequestId(requestId);
         badResponse.setDynamicCode(dynamicCode);
         badResponse.setDynamicMessage(dynamicMessage);
         return badResponse;
     }
 
-    public static BaseResponse<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
+    public static BaseResponseDTO<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
                                                                    String errorMsg, Exception e, String requestId) {
         if (logger.isErrorEnabled()) {
             logger.error(buildWarnErrorLog(className, methodName, errorCode, errorMsg, e));
         }
-        final BaseResponse<Void> badResponse = BaseResponse.createFailResult(errorCode, errorMsg);
+        final BaseResponseDTO<Void> badResponse = BaseResponseDTO.createFailResult(errorCode, errorMsg);
         badResponse.setRequestId(requestId);
         return badResponse;
     }
 
-    public static BaseResponse<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
+    public static BaseResponseDTO<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
                                                                    String errorMsg, Exception e, String requestId, Integer httpStatusCode) {
         if (logger.isErrorEnabled()) {
             logger.error(buildWarnErrorLog(className, methodName, errorCode, errorMsg, e));
         }
-        final BaseResponse<Void> badResponse = BaseResponse.createFailResult(errorCode, errorMsg);
+        final BaseResponseDTO<Void> badResponse = BaseResponseDTO.createFailResult(errorCode, errorMsg);
         badResponse.setRequestId(requestId);
         badResponse.setHttpStatusCode(httpStatusCode);
         return badResponse;

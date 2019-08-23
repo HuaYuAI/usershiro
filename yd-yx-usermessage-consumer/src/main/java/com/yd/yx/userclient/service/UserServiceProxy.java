@@ -1,6 +1,6 @@
 package com.yd.yx.userclient.service;
 
-import com.yd.yx.userclientapi.dto.base.BaseResponseDTO;
+import com.yd.yx.common.dto.BaseResponseDTO;
 import com.yd.yx.userclientapi.dto.user.request.*;
 import com.yd.yx.userclientapi.service.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;

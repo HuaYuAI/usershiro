@@ -1,6 +1,6 @@
 package com.yd.yx.common.utils;
 
-import com.yd.yx.common.constant.CommonClientConstant;
+import com.yd.yx.common.constant.CommonConstant;
 import com.yd.yx.common.vo.ResultVO;
 
 /**
@@ -12,8 +12,8 @@ public class ResultUtil {
 
     public static ResultVO success(Object object) {
         ResultVO result = new ResultVO();
-        result.setCode(CommonClientConstant.STATUS_CODE_SUCCESS);
-        result.setMsg(CommonClientConstant.STATUS_MSG_SUCCESS);
+        result.setCode(CommonConstant.STATUS_CODE_SUCCESS);
+        result.setMsg(CommonConstant.STATUS_MSG_SUCCESS);
         result.setData(object);
         return result;
     }
@@ -24,8 +24,8 @@ public class ResultUtil {
 
     public static ResultVO error() {
         ResultVO result = new ResultVO();
-        result.setCode(CommonClientConstant.STATUS_CODE_FAIL);
-        result.setMsg(CommonClientConstant.STATUS_MSG_FAIL);
+        result.setCode(CommonConstant.STATUS_CODE_FAIL);
+        result.setMsg(CommonConstant.STATUS_MSG_FAIL);
         return result;
     }
 

@@ -3,7 +3,9 @@ package com.yd.yx.common.log.controller;
 import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 
+import com.yd.yx.common.constant.CommonConstant;
 import com.yd.yx.common.exception.CommonException;
+import com.yd.yx.common.utils.ErrorMsgUtils;
 import com.yd.yx.common.utils.ResultUtil;
 import com.yd.yx.common.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,6 @@ public class ControllerExceptionAspect {
             final String userMsg = MessageFormat.format(msgPattern, commonException.getValues());
             return ResultUtil.error(CommonConstant.STATUS_CODE_FAIL, commonException.getCode(), userMsg);
         }
-        return ResultUtil.error(CommonConstant.STATUS_CODE_FAIL, ErrorCodeConstant.UNKNOWN_ERROR, "UNKNOW SYSTEM ERROR!!!");
+        return ResultUtil.error(CommonConstant.STATUS_CODE_FAIL, "", "UNKNOW SYSTEM ERROR!!!");
     }
 }

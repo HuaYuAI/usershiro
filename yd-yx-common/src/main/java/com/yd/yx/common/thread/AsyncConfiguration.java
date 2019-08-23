@@ -3,10 +3,12 @@ package com.yd.yx.common.thread;
 /**
  * Created by huayu on 2019/8/22.
  */
+
+import com.yd.yx.common.constant.CommonConstant;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -28,8 +30,14 @@ public class AsyncConfiguration implements AsyncConfigurer {
     private static final String TASK_EXECUTOR_NAME_PREFIX_SERVICE = "serviceTaskExecutor-";
     private static final String TASK_EXECUTOR_NAME_PREFIX_IO = "ioTaskExecutor-";
 
-    @Autowired
-    DiamondContainer diamondContainer;
+    @Value("${thread.pool.size.core}")
+    private Integer corePoolSize;
+
+    @Value("${thread.pool.size.max}")
+    private Integer maxPoolSize;
+
+    @Value("${thread.pool.queue.capacity}")
+    private Integer queueCapacity;
 
     @Override
     @Bean
@@ -54,9 +62,9 @@ public class AsyncConfiguration implements AsyncConfigurer {
     @Qualifier(value = CommonConstant.TASK_EXECUTOR_IO)
     public Executor getIoAsyncExecutor() {
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_CORE_SIZE_IO_KEY)));
-        executor.setMaxPoolSize(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_MAX_SIZE_IO_KEY)));
-        executor.setQueueCapacity(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_IO_KEY)));
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_IO_KEY)"));
         executor.setThreadNamePrefix(TASK_EXECUTOR_NAME_PREFIX_IO);
         return executor;
     }
@@ -68,9 +76,9 @@ public class AsyncConfiguration implements AsyncConfigurer {
 
     private Executor newTaskExecutor(final String taskExecutorNamePrefix) {
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_CORE_SIZE_KEY)));
-        executor.setMaxPoolSize(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_MAX_SIZE_KEY)));
-        executor.setQueueCapacity(Integer.valueOf(diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_KEY)));
+        executor.setCorePoolSize(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_CORE_SIZE_KEY)"));
+        executor.setMaxPoolSize(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_MAX_SIZE_KEY)"));
+        executor.setQueueCapacity(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_KEY)"));
         executor.setThreadNamePrefix(taskExecutorNamePrefix);
         return executor;
     }

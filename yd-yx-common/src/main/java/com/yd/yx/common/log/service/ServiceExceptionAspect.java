@@ -1,5 +1,7 @@
 package com.yd.yx.common.log.service;
 
+import com.yd.yx.common.exception.CommonException;
+import com.yd.yx.common.utils.CommonLogUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -29,6 +31,7 @@ public class ServiceExceptionAspect {
             final CommonException cx = ex.getCause() instanceof CommonException ? (CommonException) ex.getCause() : (CommonException) ex;
             CommonLogUtil.printAndThrowErrorExceptionWithParams(log, className, method, cx.getCode(), ex.getMessage(), cx, cx.getValues());
         }
-        CommonLogUtil.printAndThrowErrorException(log, className, method, ErrorCodeConstant.UNKNOWN_ERROR, ex.getMessage(), (Exception) ex);
+        // todo
+        CommonLogUtil.printAndThrowErrorException(log, className, method, "ErrorCodeConstant.UNKNOWN_ERROR", ex.getMessage(), (Exception) ex);
     }
 }

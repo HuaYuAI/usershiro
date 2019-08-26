@@ -2,7 +2,7 @@ server:
   port: 1111
 spring:
   application:
-    name: usermessage-provicer
+    name: usermessage-provider
   jpa:
     hibernate:
       ddl-auto: update

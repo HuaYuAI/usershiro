@@ -12,7 +12,7 @@ public interface UserMessageService {
     /*
      * 检查用户是否已经注册
      */
-    BaseResponseDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO);
+    BaseResponseDTO<Boolean> checkUsername(String userName);
 
     /*
      * 注册用户

@@ -20,15 +20,17 @@ public class UserServiceProxy implements UserMessageService {
 
 
     @Override
-    public BaseResponseDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO) {
-        return null;
+    public BaseResponseDTO<Boolean> checkUsername(String userName) {
+        BaseResponseDTO baseResponseDTO = restTemplate.getForObject(PROVIDER_SERVER_URL_PREFIX+
+                "user/checkusername/"+userName,BaseResponseDTO.class);
+        return baseResponseDTO;
     }
 
     @Override
     public BaseResponseDTO registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
-        restTemplate.postForObject(PROVIDER_SERVER_URL_PREFIX+"user/registered"
-                ,registeredUserMessageRequestDTO,BaseResponseDTO.class);
-        return new BaseResponseDTO();
+        BaseResponseDTO baseResponseDTO = restTemplate.postForObject(PROVIDER_SERVER_URL_PREFIX + "user/registered"
+                , registeredUserMessageRequestDTO, BaseResponseDTO.class);
+        return baseResponseDTO;
     }
 
     @Override

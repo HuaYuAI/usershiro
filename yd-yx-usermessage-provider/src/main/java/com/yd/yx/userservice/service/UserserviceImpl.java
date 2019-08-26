@@ -26,11 +26,11 @@ public class UserserviceImpl implements UserMessageService {
     UserMessageRepository userMessageRepository;
 
     @Override
-    public BaseResponseDTO<Boolean> checkUsername(CheckUserMessageRequestDTO checkUserMessageRequestDTO) {
-        if (StringUtils.isEmpty(checkUserMessageRequestDTO.getUsername())){
+    public BaseResponseDTO<Boolean> checkUsername(String username) {
+        if (StringUtils.isEmpty(username)){
             throw new CommonException("500","user.message.checkusername.null");
         }
-        UserMessage userMessage = userMessageRepository.findByUsername(checkUserMessageRequestDTO.getUsername());
+        UserMessage userMessage = userMessageRepository.findByUsername(username);
         if (userMessage != null){
             throw new CommonException("500","user.message.checkusername.exit");
         }
@@ -43,7 +43,7 @@ public class UserserviceImpl implements UserMessageService {
     @Override
     public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
         // 检测用户名
-        checkUsername(new CheckUserMessageRequestDTO(registeredUserMessageRequestDTO.getUsername()));
+        checkUsername(registeredUserMessageRequestDTO.getUsername());
         // 保存用户
         if (saveUser(registeredUserMessageRequestDTO)==null){
             throw new CommonException("500","user.message.common.error");

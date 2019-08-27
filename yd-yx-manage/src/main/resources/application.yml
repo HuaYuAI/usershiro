@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ydyx-gateway
+    name: ydyx-manage
 server:
   port: 9000
 # 安全失效

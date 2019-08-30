@@ -5,18 +5,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>yd-yx-config</module>
-		<module>yd-yx-gateway</module>
+		<module>yd-yx-common</module>
 		<module>yd-yx-usermessage-api</module>
 		<module>yd-yx-usermessage-provider</module>
 		<module>yd-yx-usermessage-consumer</module>
-        <module>yd-yx-common</module>
-    </modules>
+		<module>yd-yx-gateway</module>
+		<module>yd-yx-manage</module>
+	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.22.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.1.7.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<groupId>com.yd.yx</groupId>
@@ -31,11 +32,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>demo.ConfigServerApplication</start-class>
+		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
 		<java.version>1.8</java.version>
 		<docker.image.prefix>springcloud</docker.image.prefix>
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<projectlombok.version>1.16.20</projectlombok.version>
 		<swaggwer.version>2.7.0</swaggwer.version>
+		<token-bucket.version>1.7</token-bucket.version>
 	</properties>
 
 	<dependencyManagement>
@@ -43,11 +46,10 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.BUILD-SNAPSHOT</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
 
 			<dependency>
 				<groupId>org.projectlombok</groupId>
@@ -55,11 +57,13 @@
 				<version>${projectlombok.version}</version>
 				<scope>provided</scope>
 			</dependency>
+
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
 				<version>${swaggwer.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger-ui</artifactId>
@@ -70,6 +74,12 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.isomorphism</groupId>
+				<artifactId>token-bucket</artifactId>
+				<version>${token-bucket.version}</version>
 			</dependency>
 
 		</dependencies>

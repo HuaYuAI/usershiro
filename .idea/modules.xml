@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-service-api/user-service-api.iml" filepath="$PROJECT_DIR$/user-service-api/user-service-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-service-consumer/user-service-consumer.iml" filepath="$PROJECT_DIR$/user-service-consumer/user-service-consumer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-service-impl/user-service-impl.iml" filepath="$PROJECT_DIR$/user-service-impl/user-service-impl.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-service-provider/user-service-provider.iml" filepath="$PROJECT_DIR$/user-service-provider/user-service-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/usershiro.iml" filepath="$PROJECT_DIR$/usershiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-client/yd-yx-client.iml" filepath="$PROJECT_DIR$/yd-yx-client/yd-yx-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-common/yd-yx-common.iml" filepath="$PROJECT_DIR$/yd-yx-common/yd-yx-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-config/yd-yx-config.iml" filepath="$PROJECT_DIR$/yd-yx-config/yd-yx-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-gateway/yd-yx-gateway.iml" filepath="$PROJECT_DIR$/yd-yx-gateway/yd-yx-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-manage/yd-yx-manage.iml" filepath="$PROJECT_DIR$/yd-yx-manage/yd-yx-manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-usermessage-api/yd-yx-usermessage-api.iml" filepath="$PROJECT_DIR$/yd-yx-usermessage-api/yd-yx-usermessage-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-usermessage-consumer/yd-yx-usermessage-consumer.iml" filepath="$PROJECT_DIR$/yd-yx-usermessage-consumer/yd-yx-usermessage-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yd-yx-usermessage-provider/yd-yx-usermessage-provider.iml" filepath="$PROJECT_DIR$/yd-yx-usermessage-provider/yd-yx-usermessage-provider.iml" />
     </modules>
   </component>
 </project>

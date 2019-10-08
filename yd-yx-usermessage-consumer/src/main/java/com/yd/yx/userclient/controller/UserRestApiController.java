@@ -1,6 +1,6 @@
 package com.yd.yx.userclient.controller;
 
-import com.yd.yx.common.dto.BaseResponseDTO;
+import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.utils.ResultUtil;
 import com.yd.yx.common.vo.ResultVO;
 import com.yd.yx.userclient.vo.user.RegisterUserRequestVO;

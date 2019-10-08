@@ -17,10 +17,8 @@
         </dependency>
         <dependency>
             <groupId>com.yd.yx</groupId>
-            <artifactId>yd-yx-common</artifactId>
+            <artifactId>yd-yx-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-
 </project>

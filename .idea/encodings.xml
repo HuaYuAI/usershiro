@@ -2,15 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/common" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/controller" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mapper" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-manager" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service-api" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service-consumer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service-impl" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service-provider" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-manage" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-usermessage-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-usermessage-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yd-yx-usermessage-provider" charset="UTF-8" />
   </component>
 </project>

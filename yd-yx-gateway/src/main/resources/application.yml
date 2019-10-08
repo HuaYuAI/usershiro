@@ -4,7 +4,6 @@ test:
   #  uri: http://${test.hostport}
   uri: lb://httpbin
 
-
 spring:
   jmx:
     enabled: false
@@ -41,3 +40,6 @@ logging:
     reactor.netty: DEBUG
 
 management.endpoints.web.exposure.include: '*'
+
+server:
+  port: 8090

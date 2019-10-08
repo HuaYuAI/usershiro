@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
-        <module name="user-service-api" />
-        <module name="user-service-consumer" />
-        <module name="user-service-impl" />
-        <module name="user-service-provider" />
+        <module name="yd-yx-client" />
+        <module name="yd-yx-common" />
+        <module name="yd-yx-config" />
+        <module name="yd-yx-gateway" />
+        <module name="yd-yx-manage" />
+        <module name="yd-yx-usermessage-api" />
+        <module name="yd-yx-usermessage-consumer" />
+        <module name="yd-yx-usermessage-provider" />
+        <module name="yd-yx-userservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +29,19 @@
       <module name="user-service-provider" target="1.8" />
       <module name="usershiro" target="1.8" />
       <module name="utils" target="1.8" />
+      <module name="yd-yx-client" target="1.8" />
+      <module name="yd-yx-common" target="1.8" />
+      <module name="yd-yx-config" target="1.8" />
+      <module name="yd-yx-gateway" target="1.8" />
+      <module name="yd-yx-manage" target="1.8" />
+      <module name="yd-yx-userapi" target="1.8" />
+      <module name="yd-yx-userclient" target="1.8" />
+      <module name="yd-yx-userclientapi" target="1.8" />
+      <module name="yd-yx-usermessage-api" target="1.8" />
+      <module name="yd-yx-usermessage-consumer" target="1.8" />
+      <module name="yd-yx-usermessage-provider" target="1.8" />
+      <module name="yd-yx-userprovider" target="1.8" />
+      <module name="yd-yx-userservice" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

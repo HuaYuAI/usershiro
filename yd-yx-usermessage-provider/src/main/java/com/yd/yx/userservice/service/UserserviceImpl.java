@@ -3,13 +3,15 @@ package com.yd.yx.userservice.service;
 /**
  * Created by huayu on 2019/8/18.
  */
+import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
-import com.yd.yx.common.dto.BaseResponseDTO;
 import com.yd.yx.userclientapi.dto.user.request.*;
+import com.yd.yx.userclientapi.dto.user.response.LoginUserMessageResponseDTO;
 import com.yd.yx.userclientapi.dto.user.response.RegisteredUserMessageResponseDTO;
 import com.yd.yx.userclientapi.service.UserMessageService;
 import com.yd.yx.userservice.dao.user.UserMessageRepository;
 import com.yd.yx.userservice.entity.user.UserMessage;
+import com.yd.yx.userservice.utils.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class UserserviceImpl implements UserMessageService {
 
     @Autowired
     UserMessageRepository userMessageRepository;
+
+    @Autowired
+    JwtTokenService jwtTokenService;
 
     @Override
     public BaseResponseDTO<Boolean> checkUsername(String username) {
@@ -77,11 +82,14 @@ public class UserserviceImpl implements UserMessageService {
 
     @Override
     public BaseResponseDTO userContent(ContentUserMessageRequestDTO contentUserMessageRequestDTO) {
+        jwtTokenService.getInfoFromToken(contentUserMessageRequestDTO.getToken());
+
         return null;
     }
 
     @Override
-    public BaseResponseDTO userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
+    public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
+        jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
         return null;
     }
 

@@ -1,6 +1,7 @@
 package com.yd.yx.common.utils;
 
-import com.yd.yx.common.dto.BaseResponseDTO;
+
+import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -152,7 +153,7 @@ public class CommonLogUtil {
     }
 
     public static BaseResponseDTO<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
-                                                                   String errorMsg, Exception e, String requestId, Integer httpStatusCode) {
+                                                                      String errorMsg, Exception e, String requestId, Integer httpStatusCode) {
         if (logger.isErrorEnabled()) {
             logger.error(buildWarnErrorLog(className, methodName, errorCode, errorMsg, e));
         }

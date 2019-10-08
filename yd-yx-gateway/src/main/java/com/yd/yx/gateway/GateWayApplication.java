@@ -1,32 +1,31 @@
 package com.yd.yx.gateway;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import com.yd.yx.gateway.filter.ThrottleGatewayFilter;
-import reactor.core.publisher.Mono;
-
+import com.yd.yx.gateway.filter.TokenFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by huayu on 2019/8/28.
  */
-@SpringBootConfiguration
-@EnableAutoConfiguration
-// @Import(AdditionalRoutes.class)
+@SpringBootApplication
+@Slf4j
 public class GateWayApplication {
 
 
@@ -36,15 +35,23 @@ public class GateWayApplication {
     @Value("${test.uri:http://httpbin.org:80}")
     String uri;
 
+    @Bean
+    public TokenFilter tokenFilter(){
+        return new TokenFilter();
+    }
+
+
     public static void main(String[] args) {
         SpringApplication.run(GateWayApplication.class, args);
     }
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+        String methodName = "customRouteLocator";
         //@formatter:off
         // String uri = "http://httpbin.org:80";
         // String uri = "http://localhost:9080";
+        log.info("进入方法："+methodName);
         return builder.routes()
                 .route(r -> r.host("**.abc.org").and().path("/anything/png")
                         .filters(f ->
@@ -119,6 +126,8 @@ public class GateWayApplication {
 
     @Bean
     public RouterFunction<ServerResponse> testFunRouterFunction() {
+        String methodName = "testFunRouterFunction";
+        log.info("进入方法："+methodName);
         RouterFunction<ServerResponse> route = RouterFunctions.route(
                 RequestPredicates.path("/testfun"),
                 request -> ServerResponse.ok().body(BodyInserters.fromObject("hello")));
@@ -127,6 +136,8 @@ public class GateWayApplication {
 
     @Bean
     public RouterFunction<ServerResponse> testWhenMetricPathIsNotMeet() {
+        String methodName = "testWhenMetricPathIsNotMeet";
+        log.info("进入方法："+methodName);
         RouterFunction<ServerResponse> route = RouterFunctions.route(
                 RequestPredicates.path("/actuator/metrics/gateway.requests"),
                 request -> ServerResponse.ok().body(BodyInserters

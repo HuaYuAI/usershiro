@@ -50,6 +50,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
         <!-- Use MySQL Connector-J -->
 
         <dependency>
@@ -63,8 +68,24 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+        <dependency>
             <groupId>com.yd.yx</groupId>
             <artifactId>yd-yx-common</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yd.yx</groupId>
+            <artifactId>yd-yx-client</artifactId>
             <version>${project.version}</version>
         </dependency>
 

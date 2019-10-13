@@ -1,6 +1,7 @@
 package com.yd.yx.userservice.controller;
 
 import com.yd.yx.common.log.Anoymous;
+import com.yd.yx.common.log.controller.ControllerLogs;
 import com.yd.yx.common.utils.ResultUtil;
 import com.yd.yx.common.vo.ResultVO;
 import com.yd.yx.client.dto.BaseResponseDTO;
@@ -20,7 +21,7 @@ public class UserProviderController {
 
     @ApiOperation("检测用户名称是否存在")
     @GetMapping("/user/checkusername/{username}")
-    @Anoymous
+    @ControllerLogs
     public ResultVO registerUser(@PathVariable String username){
         BaseResponseDTO baseResponseDTO =
                 userMessageService.checkUsername(username);

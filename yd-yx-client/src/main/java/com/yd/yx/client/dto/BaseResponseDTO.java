@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
  * Created by huayu on 2019/8/18.
  */
 @Data
-@Accessors(chain = true)
+// @Accessors(chain = true)
 public class BaseResponseDTO<T> {
 
 

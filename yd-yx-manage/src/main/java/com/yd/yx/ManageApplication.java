@@ -1,4 +1,4 @@
-package com.yd.yx.manage;
+package com.yd.yx;
 
 
 import org.springframework.boot.SpringApplication;

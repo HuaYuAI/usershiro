@@ -1,11 +1,10 @@
-package com.yd.yx.gateway;
+package com.yd.yx;
 
 import com.yd.yx.gateway.filter.ThrottleGatewayFilter;
 import com.yd.yx.gateway.filter.TokenFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;

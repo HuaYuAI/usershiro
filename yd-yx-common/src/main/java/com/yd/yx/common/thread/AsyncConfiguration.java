@@ -18,7 +18,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 /**
- * @author 昱升
+ * @author
  * @date 2019/1/18 下午3:54
  */
 @EnableAsync
@@ -64,7 +64,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(corePoolSize);
         executor.setMaxPoolSize(maxPoolSize);
-        executor.setQueueCapacity(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_IO_KEY)"));
+        executor.setQueueCapacity(queueCapacity);
         executor.setThreadNamePrefix(TASK_EXECUTOR_NAME_PREFIX_IO);
         return executor;
     }
@@ -76,9 +76,9 @@ public class AsyncConfiguration implements AsyncConfigurer {
 
     private Executor newTaskExecutor(final String taskExecutorNamePrefix) {
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_CORE_SIZE_KEY)"));
-        executor.setMaxPoolSize(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_MAX_SIZE_KEY)"));
-        executor.setQueueCapacity(Integer.valueOf("diamondContainer.getValue(DiamondConstant.THREAD_POOL_QUEUE_CAPACITY_KEY)"));
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(queueCapacity);
         executor.setThreadNamePrefix(taskExecutorNamePrefix);
         return executor;
     }

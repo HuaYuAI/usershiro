@@ -57,4 +57,5 @@ public class GetPropertiesMessage {
         return new MyHealthIndicator();
     }
 
+
 }

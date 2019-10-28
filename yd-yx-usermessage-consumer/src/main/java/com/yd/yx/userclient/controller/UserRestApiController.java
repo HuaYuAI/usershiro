@@ -4,12 +4,15 @@ import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.utils.ResultUtil;
 import com.yd.yx.common.vo.ResultVO;
 import com.yd.yx.userclient.vo.user.RegisterUserRequestVO;
-import com.yd.yx.userclientapi.dto.user.request.RegisteredUserMessageRequestDTO;
-import com.yd.yx.userclientapi.service.UserMessageService;
+import com.yd.yx.userclient.api.dto.user.request.RegisteredUserMessageRequestDTO;
+import com.yd.yx.userclient.api.service.UserMessageService;
+import feign.Contract;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,5 +42,8 @@ public class UserRestApiController {
         BaseResponseDTO baseResponseDTO = userMessageService.registeredUser(registeredUserMessageRequestDTO);
         return ResultUtil.success(baseResponseDTO.getData());
     }
-
+/*    @Bean
+    public Contract feignContract() {
+        return new Contract.Default();
+    }*/
 }

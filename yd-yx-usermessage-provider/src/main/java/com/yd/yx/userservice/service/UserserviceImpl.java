@@ -3,25 +3,28 @@ package com.yd.yx.userservice.service;
 /**
  * Created by huayu on 2019/8/18.
  */
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
-import com.yd.yx.userclientapi.dto.user.request.*;
-import com.yd.yx.userclientapi.dto.user.response.LoginUserMessageResponseDTO;
-import com.yd.yx.userclientapi.dto.user.response.RegisteredUserMessageResponseDTO;
-import com.yd.yx.userclientapi.service.UserMessageService;
+import com.yd.yx.common.log.controller.ControllerLogs;
+import com.yd.yx.userclient.api.dto.user.request.*;
+import com.yd.yx.userclient.api.dto.user.response.LoginUserMessageResponseDTO;
+import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseDTO;
+import com.yd.yx.userclient.api.service.UserMessageService;
 import com.yd.yx.userservice.dao.user.UserMessageRepository;
 import com.yd.yx.userservice.entity.user.UserMessage;
 import com.yd.yx.userservice.utils.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
 @Slf4j
-@Service
+@RestController
 public class UserserviceImpl implements UserMessageService {
 
     @Autowired
@@ -31,7 +34,13 @@ public class UserserviceImpl implements UserMessageService {
     JwtTokenService jwtTokenService;
 
     @Override
-    public BaseResponseDTO<Boolean> checkUsername(String username) {
+    @GetMapping("/user/checkusername/{username}")
+    @HystrixCommand(fallbackMethod = "defaultStores",commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
+            @HystrixProperty(name = "fallback.enabled", value = "true")
+    })
+    @ControllerLogs
+    public BaseResponseDTO<Boolean> checkUsername(@PathVariable("username") String username) {
         if (StringUtils.isEmpty(username)){
             throw new CommonException("500","user.message.checkusername.null");
         }
@@ -45,8 +54,15 @@ public class UserserviceImpl implements UserMessageService {
         return baseResponseDTO;
     }
 
+    public BaseResponseDTO<Boolean> defaultStores(String message){
+        log.info("调用超时");
+        return null;
+    }
+
     @Override
-    public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
+    @PostMapping("/user/registereduser")
+    @ControllerLogs
+    public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser(@RequestBody RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
         // 检测用户名
         checkUsername(registeredUserMessageRequestDTO.getUsername());
         // 保存用户
@@ -76,6 +92,8 @@ public class UserserviceImpl implements UserMessageService {
     }
 
     @Override
+    @PutMapping("/user/updateuser")
+    @ControllerLogs
     public BaseResponseDTO updateUserMessage(UpdateUserMessageRequestDTO updateUserMessageRequestDTO) {
         return null;
     }
@@ -88,12 +106,16 @@ public class UserserviceImpl implements UserMessageService {
     }
 
     @Override
+    @PutMapping("/user/login")
+    @ControllerLogs
     public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
         jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
         return null;
     }
 
     @Override
+    @PutMapping("/user/updateuser")
+    @ControllerLogs
     public BaseResponseDTO userLogOut(LogOutUserMessageRequestDTO logOutUserMessageRequestDTO) {
         return null;
     }

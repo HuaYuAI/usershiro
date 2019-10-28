@@ -1,17 +1,16 @@
-package com.yd.yx.userclient;
+package com.yd.yx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * Created by huayu on 2019/8/15.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableFeignClients
 public class UserMessageCousumer {
 
 
@@ -19,12 +18,6 @@ public class UserMessageCousumer {
 
         SpringApplication.run(UserMessageCousumer.class, args);
 
-    }
-
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.yd.yx.userclientapi.dto.user.response;
+package com.yd.yx.userclient.api.dto.user.response;
 
 import lombok.Data;
 

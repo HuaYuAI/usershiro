@@ -1,7 +1,6 @@
 package com.yd.yx.client.dto;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * Created by huayu on 2019/8/18.

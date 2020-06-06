@@ -3,8 +3,6 @@ package com.yd.yx.common.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 /**
  * Created by huayu on 2019/8/20.
  */

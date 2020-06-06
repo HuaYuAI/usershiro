@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by huayu on 2019/8/15.
  */
@@ -17,7 +20,7 @@ public class UserMessageCousumer {
     public static void main(String[] args) {
 
         SpringApplication.run(UserMessageCousumer.class, args);
-
+        Collections.sort(new ArrayList());
     }
 
 }

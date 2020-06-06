@@ -3,14 +3,13 @@ package com.yd.yx.common.log;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.yd.yx.common.log.controller.ControllerLogs;
 import com.yd.yx.common.utils.CommonLogUtil;
 import com.yd.yx.common.utils.CommonStringUtils;
 import com.yd.yx.common.utils.IpUtils;
 import com.yd.yx.common.utils.UserAgentUtils;
 import eu.bitwalker.useragentutils.UserAgent;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -22,14 +21,11 @@ import org.springframework.util.StopWatch;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import lombok.extern.slf4j.Slf4j;
 /**
  * Created by huayu on 2019/8/22.
  */

@@ -13,11 +13,15 @@ import com.yd.yx.userclient.api.dto.user.request.*;
 import com.yd.yx.userclient.api.dto.user.response.LoginUserMessageResponseDTO;
 import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseDTO;
 import com.yd.yx.userclient.api.service.UserMessageService;
-import com.yd.yx.userservice.dao.user.UserMessageRepository;
-import com.yd.yx.userservice.entity.user.UserMessage;
-import com.yd.yx.userservice.utils.JwtInfo;
+import com.yd.yx.userservice.repository.dao.UserMessageRepository;
+import com.yd.yx.userservice.repository.entity.UserMessage;
+import com.yd.yx.userservice.utils.jwt.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +30,7 @@ import java.util.Date;
 
 @Slf4j
 @RestController
-public class UserMessageServiceImpl implements UserMessageService {
+public class UserMessageServiceImpl implements UserMessageService, UserDetailsService {
 
     @Autowired
     UserMessageRepository userMessageRepository;
@@ -110,6 +114,12 @@ public class UserMessageServiceImpl implements UserMessageService {
     @Override
     @PostMapping("/user/login")
     @ControllerLogs
+    // 或者
+    @Secured("ROLE_admin")
+    // 并且
+    // @PreAuthorize("hasRole('')")
+    // 根据返回值判断
+    //@PostAuthorize("returnObject==1")
     public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
         jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
         return null;
@@ -122,4 +132,8 @@ public class UserMessageServiceImpl implements UserMessageService {
         return null;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 }

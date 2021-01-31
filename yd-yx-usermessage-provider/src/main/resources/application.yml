@@ -1,16 +1,44 @@
 server:
   port: 1112
 spring:
+  #  当发布后找不到静态文件时刻使用此注释
+  resources:
+    static-locations: /templates/**
   application:
     name: usermessage-provider
+  mvc:
+    static-path-pattern: /templates/**
+  #模板引擎
+  thymeleaf:
+    prefix: classpath:/templates/
+    mode: HTML5
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
   jpa:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/usershiro?serverTimezone=GMT%2B8
+    url: jdbc:mysql://47.95.210.245:3306/usershiro?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 123456
-
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
 # 安全失效
 management:
   security:

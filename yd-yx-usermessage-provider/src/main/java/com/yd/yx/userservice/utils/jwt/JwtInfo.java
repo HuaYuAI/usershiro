@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.utils;
+package com.yd.yx.userservice.utils.jwt;
 
 import lombok.Data;
 

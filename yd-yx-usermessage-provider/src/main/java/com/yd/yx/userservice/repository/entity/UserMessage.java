@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.entity.user;
+package com.yd.yx.userservice.repository.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.utils;
+package com.yd.yx.userservice.utils.jwt;
 
 /**
  * Created by huayu on 2019/9/9.

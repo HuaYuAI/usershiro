@@ -1,4 +1,4 @@
-package com.yd.yx;
+package com.yd.yx.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

@@ -44,6 +44,7 @@ public class UserRestApiController {
         return ResultUtil.success(baseResponseDTO.getData());
     }
 
+
     public static void main(String[] args) {
         System.out.println(StringUtils.isNumeric("11.0"));
     }

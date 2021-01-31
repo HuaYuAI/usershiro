@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.utils;
+package com.yd.yx.userservice.utils.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -22,7 +22,7 @@ public class JwtTokenUtil {
     }
 
     // 生成token
-    public static String generatorToken(JwtInfo jwtInfo,int expire){
+    public static String generatorToken(JwtInfo jwtInfo, int expire){
         return Jwts.builder().claim(JwtConstants.JWT_KEY_ID,jwtInfo.getUid())
         .setExpiration(DateTime.now().plusSeconds(expire).toDate())
         .signWith(SignatureAlgorithm.ES256,getKeyInstance()).compact();

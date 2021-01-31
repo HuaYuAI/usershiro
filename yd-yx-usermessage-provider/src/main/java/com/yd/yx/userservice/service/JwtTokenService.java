@@ -1,7 +1,7 @@
 package com.yd.yx.userservice.service;
 
-import com.yd.yx.userservice.utils.JwtInfo;
-import com.yd.yx.userservice.utils.JwtTokenUtil;
+import com.yd.yx.userservice.utils.jwt.JwtInfo;
+import com.yd.yx.userservice.utils.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

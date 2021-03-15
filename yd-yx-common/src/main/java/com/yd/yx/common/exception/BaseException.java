@@ -5,8 +5,11 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * Created by huayu on 2019/8/20.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @Data
 public class BaseException extends RuntimeException implements Serializable{
 

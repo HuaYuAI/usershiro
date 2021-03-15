@@ -4,6 +4,8 @@ import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 
 import com.yd.yx.common.constant.CommonConstant;
+import com.yd.yx.common.constant.ResponseStatusEnum;
+import com.yd.yx.common.exception.BaseException;
 import com.yd.yx.common.exception.CommonException;
 import com.yd.yx.common.utils.ErrorMsgUtils;
 import com.yd.yx.common.utils.ResultUtil;
@@ -15,9 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 /**
- * Created by huayu on 2019/8/22.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @RestControllerAdvice
 @Slf4j
 public class ControllerExceptionAspect {
@@ -26,17 +32,17 @@ public class ControllerExceptionAspect {
     HttpServletRequest request;
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResultVO handlerException(Exception e) {
-        if (e instanceof CommonException) {
-            CommonException commonException = (CommonException) e;
+        if (e instanceof BaseException) {
+            BaseException commonException = (BaseException) e;
 
             String locale = StringUtils.isNotBlank(request.getHeader("language")) ? request.getHeader("language") : "zh-CN";
             String msg = ErrorMsgUtils.getErrorMsg(commonException.getCode(), locale);
-            final String msgPattern = StringUtils.isNotBlank(msg) ? msg : e.getMessage();
-            final String userMsg = MessageFormat.format(msgPattern, commonException.getValues());
-            return ResultUtil.error(CommonConstant.STATUS_CODE_FAIL, commonException.getCode(), userMsg);
+            String msgPattern = StringUtils.isNotBlank(msg) ? msg : e.getMessage();
+            String userMsg = MessageFormat.format(msgPattern, commonException.getValues());
+            return ResultUtil.error(ResponseStatusEnum.FAIL.getCode(), commonException.getCode(), userMsg);
         }
-        return ResultUtil.error(CommonConstant.STATUS_CODE_FAIL, "", "UNKNOW SYSTEM ERROR!!!");
+        return ResultUtil.error(ResponseStatusEnum.FAIL.getCode(), "", "UNKNOW SYSTEM ERROR!!!");
     }
 }

@@ -3,17 +3,13 @@ package com.yd.yx.common.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-/**
- * Created by huayu on 2019/8/20.
- */
-
-
 
 /**
- * @author 昱升
- * @version 创建时间：2018年7月29日 下午3:25:02
- * 结果对象
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @ApiModel(
         description = "返回结果"
 )
@@ -22,9 +18,9 @@ public class ResultVO<T> {
 
     @ApiModelProperty(value = "状态")
     private String code;
-
-    @ApiModelProperty(value = "信息")
-    private String msgCode;
+//
+//    @ApiModelProperty(value = "信息")
+//    private String msgCode;
 
     @ApiModelProperty(value = "信息")
     private String msg;

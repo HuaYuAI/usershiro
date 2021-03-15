@@ -8,9 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
- * Created by huayu on 2019/8/23.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 public class CommonStringUtils {
     private final static Pattern CHINESE_CHARACTER_PATTERN = Pattern.compile("[\\u4e00-\\u9fa5]");
 

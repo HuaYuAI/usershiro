@@ -1,9 +1,5 @@
 package com.yd.yx.common.thread;
 
-/**
- * Created by huayu on 2019/8/22.
- */
-
 import com.yd.yx.common.constant.CommonConstant;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
@@ -18,15 +14,16 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 /**
- * @author
- * @date 2019/1/18 下午3:54
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @EnableAsync
 @Configuration
 public class AsyncConfiguration implements AsyncConfigurer {
 
     private static final String TASK_EXECUTOR_NAME_PREFIX_DEFAULT = "taskExecutor-";
-    private static final String TASK_EXECUTOR_NAME_PREFIX_REPOSITORY = "repositoryTaskExecutor-";
     private static final String TASK_EXECUTOR_NAME_PREFIX_SERVICE = "serviceTaskExecutor-";
     private static final String TASK_EXECUTOR_NAME_PREFIX_IO = "ioTaskExecutor-";
 
@@ -44,12 +41,6 @@ public class AsyncConfiguration implements AsyncConfigurer {
     @Qualifier(value = CommonConstant.TASK_EXECUTOR_DEFAULT)
     public Executor getAsyncExecutor() {
         return newTaskExecutor(TASK_EXECUTOR_NAME_PREFIX_DEFAULT);
-    }
-
-    @Bean
-    @Qualifier(value = CommonConstant.TASK_EXECUTOR_REPOSITORY)
-    public Executor getRepositoryAsyncExecutor() {
-        return newTaskExecutor(TASK_EXECUTOR_NAME_PREFIX_REPOSITORY);
     }
 
     @Bean

@@ -51,11 +51,4 @@ public class GetPropertiesMessage {
         return myName;
     }
 
-
-    @Bean
-    public MyHealthIndicator myHealthIndicator(){
-        return new MyHealthIndicator();
-    }
-
-
 }

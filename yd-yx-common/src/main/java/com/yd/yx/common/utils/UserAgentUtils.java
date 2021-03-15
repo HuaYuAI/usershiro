@@ -1,13 +1,16 @@
 package com.yd.yx.common.utils;
 
-/**
- * Created by huayu on 2019/8/22.
- */
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.DeviceType;
 import eu.bitwalker.useragentutils.UserAgent;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 public class UserAgentUtils {
 
     /**

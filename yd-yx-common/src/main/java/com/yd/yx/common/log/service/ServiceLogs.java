@@ -6,8 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by huayu on 2019/8/22.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ServiceLogs {

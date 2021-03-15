@@ -4,8 +4,11 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by huayu on 2019/9/21.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited

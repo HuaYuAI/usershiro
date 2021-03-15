@@ -1,9 +1,13 @@
 package com.yd.yx.common.exception;
 
 import org.apache.commons.lang3.StringUtils;
+
 /**
- * Created by huayu on 2019/8/20.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 public class CommonException extends BaseException {
 
     public CommonException(String code) {

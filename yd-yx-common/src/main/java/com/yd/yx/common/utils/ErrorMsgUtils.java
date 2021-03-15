@@ -8,8 +8,11 @@ import javax.annotation.PostConstruct;
 import java.text.MessageFormat;
 
 /**
- * Created by huayu on 2019/8/22.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @Component
 public class ErrorMsgUtils {
 

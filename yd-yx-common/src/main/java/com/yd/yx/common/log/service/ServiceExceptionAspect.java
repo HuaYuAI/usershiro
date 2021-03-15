@@ -9,9 +9,13 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
+
 /**
- * Created by huayu on 2019/8/22.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 @Aspect
 @Component
 @Slf4j

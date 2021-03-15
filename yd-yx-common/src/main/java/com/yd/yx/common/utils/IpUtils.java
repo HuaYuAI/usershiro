@@ -3,9 +3,13 @@ package com.yd.yx.common.utils;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+
 /**
- * Created by huayu on 2019/8/23.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 public class IpUtils {
 
     /**

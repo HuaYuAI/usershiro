@@ -1,4 +1,18 @@
 # Created by .ignore support plugin (hsz.mobi)
+target/
+.settings
+.classpath
+.project
+*.DS_Store
+classpath/
+.factorypath
+
+### STS ###
+
+### IntelliJ IDEA ###
 .idea
 *.iml
-target
+
+
+/bin/
+/target/

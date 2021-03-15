@@ -5,9 +5,13 @@ import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
+
 /**
- * Created by huayu on 2019/8/22.
- */
+ * @ClassName
+ * @Description:
+ * @Author:
+ * @Date:
+ **/
 public class CommonLogUtil {
 
     protected CommonLogUtil() {

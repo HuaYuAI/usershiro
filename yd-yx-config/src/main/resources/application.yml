@@ -6,7 +6,7 @@ management:
 # 服务端实现
 spring:
   application:
-    name: configserver
+    name: yd-yx-config
   cloud:
     config:
       server:

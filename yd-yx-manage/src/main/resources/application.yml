@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ydyx-manage
+    name: yd-yx-manage
 server:
   port: 9000
 # 安全失效
@@ -12,6 +12,8 @@ eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
+    healthcheck:
+      enabled: true
 # 服务用于注册
     serviceUrl:
       defaultZone: http://localhost:${server.port}/eureka

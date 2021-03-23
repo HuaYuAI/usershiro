@@ -42,8 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.loginProcessingUrl("/user/login").permitAll().failureForwardUrl("/login123").permitAll()
             .and()
                 //csrf 校验
-                .csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository()).and()
-                .logout().logoutUrl(" ")
+                .csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository())
+                .and()
+                .logout().logoutUrl("/logout")
                 .permitAll();
     }
 

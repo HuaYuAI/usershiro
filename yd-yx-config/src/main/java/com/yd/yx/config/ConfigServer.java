@@ -21,7 +21,8 @@ public class ConfigServer {
     public static void main(String[] args) {
         SpringApplication.run(ConfigServer.class, args);
     }
+//  docker buildx build .
 //  docker exec -t 8cb8d416ff4f /bin/bash
-//  docker run -d -p 7777:7001 --name mytomcat tomcat
+//  docker run -d -p 8989:8989 --name yd-yx-config yd-yx-config
 //  docker container logs -f dc8d6c9f36b4
 }

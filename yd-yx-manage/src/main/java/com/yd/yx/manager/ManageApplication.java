@@ -14,6 +14,7 @@ public class ManageApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(ManageApplication.class, args);
+//  docker run -d -p 9000:9000 --name yd-yx-manage yd-yx-manage
 
     }
 

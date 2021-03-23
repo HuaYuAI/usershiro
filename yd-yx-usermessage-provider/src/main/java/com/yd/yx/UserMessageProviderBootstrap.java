@@ -20,5 +20,9 @@ public class UserMessageProviderBootstrap {
     public static void main(String[] args) {
         SpringApplication.run(UserMessageProviderBootstrap.class, args);
     }
-
+//  docker run -p 3306:3306 --name mysql5.7.33 -v /home/shixiaohua/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.33
+//  docker exec -it mysql /bin/bash
+//  mysql -u root -p
+//  show databases;
+//  create DATABASE  IF NOT EXISTS usershiro;
 }

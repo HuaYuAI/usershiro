@@ -1,7 +1,7 @@
-package com.yd.yx.userservice.repository.dao;
+package com.yd.yx.userservice.service.repository.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import com.yd.yx.userservice.repository.entity.UserMessage;
+import com.yd.yx.userservice.service.repository.entity.UserMessage;
 /**
  *
  * @Query(nativeQuery = true, value = "SELECT * FROM trans_mgmt.doc_pv where product_name = ?1 and state_date = ?2 and language = ?3")

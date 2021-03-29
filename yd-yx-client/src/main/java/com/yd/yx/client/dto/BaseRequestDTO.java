@@ -1,14 +1,20 @@
 package com.yd.yx.client.dto;
 
-import lombok.Data;
-
 import java.io.Serializable;
 
-/**
- * Created by huayu on 2019/8/19.
- */
-@Data
 public class BaseRequestDTO implements Serializable {
 
+    private static final long serialVersionUID = -6798990512217093624L;
     private int deviceType;
+
+    public BaseRequestDTO() {
+    }
+
+    public int getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(int deviceType) {
+        this.deviceType = deviceType;
+    }
 }

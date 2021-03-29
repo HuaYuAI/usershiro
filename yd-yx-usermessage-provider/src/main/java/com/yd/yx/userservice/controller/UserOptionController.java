@@ -1,8 +1,4 @@
-package com.yd.yx.userservice.service;
-
-/**
- * Created by huayu on 2019/8/18.
- */
+package com.yd.yx.userservice.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
@@ -13,15 +9,13 @@ import com.yd.yx.userclient.api.dto.user.request.*;
 import com.yd.yx.userclient.api.dto.user.response.LoginUserMessageResponseDTO;
 import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseDTO;
 import com.yd.yx.userclient.api.service.UserMessageService;
-import com.yd.yx.userservice.repository.dao.UserMessageRepository;
-import com.yd.yx.userservice.repository.entity.UserMessage;
+import com.yd.yx.userservice.service.JwtTokenService;
+import com.yd.yx.userservice.service.repository.UserMessageServiceImpl;
+import com.yd.yx.userservice.service.repository.entity.UserMessage;
 import com.yd.yx.userservice.utils.jwt.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -30,10 +24,10 @@ import java.util.Date;
 
 @Slf4j
 @RestController
-public class UserMessageServiceImpl implements UserMessageService, UserDetailsService {
+public class UserOptionController implements UserMessageService {
 
     @Autowired
-    UserMessageRepository userMessageRepository;
+    UserMessageServiceImpl userMessageService;
 
     @Autowired
     JwtTokenService jwtTokenService;
@@ -49,13 +43,7 @@ public class UserMessageServiceImpl implements UserMessageService, UserDetailsSe
         if (StringUtils.isEmpty(username)) {
             throw new CommonException("500", "user.message.checkusername.null");
         }
-        UserMessage userMessage = userMessageRepository.findByUsername(username);
-        if (userMessage != null) {
-            throw new CommonException("500", "user.message.checkusername.exit");
-        }
-        BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-        baseResponseDTO.setCode("200");
-        baseResponseDTO.setData(true);
+        BaseResponseDTO baseResponseDTO = userMessageService.checkUsername(username);
         return baseResponseDTO;
     }
 
@@ -132,8 +120,4 @@ public class UserMessageServiceImpl implements UserMessageService, UserDetailsSe
         return null;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
 }

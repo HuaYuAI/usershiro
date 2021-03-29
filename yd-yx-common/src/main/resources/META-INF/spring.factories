@@ -1,0 +1,6 @@
+# EnableAutoConfiguration auto-configuration imports
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yd.yx.common.log.controller.ControllerExceptionAspect,\
+com.yd.yx.common.log.service.ServiceExceptionAspect,\
+com.yd.yx.common.log,LogAspect
+

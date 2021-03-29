@@ -1,11 +1,12 @@
-package com.yd.yx.client.dto;
+package com.yd.yx.client.vo;
 
 import java.io.Serializable;
 
-public class BaseResponseDTO<T> implements Serializable {
+// user
+@Deprecated
+public class BaseResponseVO<T> implements Serializable {
 
-
-    private static final long serialVersionUID = -6932655599075823778L;
+    private static final long serialVersionUID = 5231033481398141744L;
     /**
      * 是否成功
      */
@@ -107,8 +108,8 @@ public class BaseResponseDTO<T> implements Serializable {
     /**
      * 构造失败数据
      */
-    public static <T> BaseResponseDTO<T> createFailResult(String errorCode, String errorMsg) {
-        BaseResponseDTO<T> result = new BaseResponseDTO<T>();
+    public static <T> BaseResponseVO<T> createFailResult(String errorCode, String errorMsg) {
+        BaseResponseVO<T> result = new BaseResponseVO<T>();
         result.setSuccess(false);
         result.setCode(errorCode);
         result.setMessage(errorMsg);
@@ -119,8 +120,8 @@ public class BaseResponseDTO<T> implements Serializable {
     /**
      * 构建成功数据
      */
-    public static <T> BaseResponseDTO<T> createSuccessResult(T data) {
-        BaseResponseDTO<T> result = new BaseResponseDTO<T>();
+    public static <T> BaseResponseVO<T> createSuccessResult(T data) {
+        BaseResponseVO<T> result = new BaseResponseVO<T>();
         result.setSuccess(true);
         result.setData(data);
         result.setHttpStatusCode(200);
@@ -130,7 +131,7 @@ public class BaseResponseDTO<T> implements Serializable {
     /**
      * 构造无数据返回操作类的成功请求
      */
-    public static BaseResponseDTO createSuccessResult() {
+    public static BaseResponseVO createSuccessResult() {
         return createSuccessResult(null);
     }
 

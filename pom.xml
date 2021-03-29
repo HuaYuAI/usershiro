@@ -11,7 +11,6 @@
 		<module>yd-yx-usermessage-consumer</module>
 		<module>yd-yx-gateway</module>
 		<module>yd-yx-manage</module>
-		<module>yd-yx-client</module>
 	</modules>
 
 	<parent>
@@ -43,6 +42,7 @@
 		<fastjson.version>1.2.28</fastjson.version>
 		<druid.version>1.0.18</druid.version>
 		<guava.version>25.1-jre</guava.version>
+		<commons.client.version>1.0.0</commons.client.version>
 	</properties>
 
 	<dependencyManagement>
@@ -107,6 +107,12 @@
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.yd.yx</groupId>
+				<artifactId>yd-yx-client</artifactId>
+				<version>${commons.client.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<build>

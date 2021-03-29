@@ -105,12 +105,6 @@
             </exclusions>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.yd.yx</groupId>
-            <artifactId>yd-yx-client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
     </dependencies>
 
 </project>

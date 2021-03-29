@@ -12,11 +12,6 @@
     <artifactId>yd-yx-common</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.yd.yx</groupId>
-            <artifactId>yd-yx-client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
@@ -65,6 +60,15 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.28</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yd.yx</groupId>
+            <artifactId>yd-yx-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.6.RELEASE</version>
         </dependency>
 
     </dependencies>

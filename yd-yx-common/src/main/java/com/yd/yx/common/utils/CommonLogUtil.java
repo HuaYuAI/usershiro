@@ -1,6 +1,5 @@
 package com.yd.yx.common.utils;
 
-
 import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;
 import org.apache.commons.lang3.StringUtils;
@@ -135,7 +134,7 @@ public class CommonLogUtil {
     }
 
     public static BaseResponseDTO<Void> printAndReturnPopExceptionLog(Logger logger, String className, String methodName, String errorCode,
-                                                                   String errorMsg, Exception e, String requestId, String dynamicCode, String dynamicMessage) {
+                                                                      String errorMsg, Exception e, String requestId, String dynamicCode, String dynamicMessage) {
         if (logger.isErrorEnabled()) {
             logger.error(buildWarnErrorLog(className, methodName, errorCode, errorMsg, e));
         }

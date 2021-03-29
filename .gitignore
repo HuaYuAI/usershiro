@@ -16,3 +16,5 @@ classpath/
 
 /bin/
 /target/
+/.idea/
+*.jar

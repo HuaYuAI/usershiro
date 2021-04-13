@@ -6,5 +6,5 @@ import java.io.Serializable;
 /**
  * Created by huayu on 2019/8/19.
  */
-public class UpdateUserMessageRequestDTO extends BaseRequestDTO implements Serializable {
+public class UpdateUserMessageRequestDTO extends RegisteredUserMessageRequestDTO implements Serializable {
 }

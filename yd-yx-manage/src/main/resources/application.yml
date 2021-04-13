@@ -17,3 +17,12 @@ eureka:
 # 服务用于注册
     serviceUrl:
       defaultZone: http://localhost:${server.port}/eureka
+    registry-fetch-interval-seconds: 30
+  server:
+    enable-self-preservatioin: false
+    renewal-percent-threshold: 0.8
+    eviction-interval-timer-in-ms: 1000
+    user-read-only-cache: false
+    response-cache-update-interval-ms: 1000
+  instance:
+    lease-renewal-interval-in-seconds: 30

@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Override
-    public void configure(AuthenticationManagerBuilder builder) {
+    public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.jdbcAuthentication().dataSource(dataSource).withUser("dave")
                 .password("secret").roles("USER");
     }

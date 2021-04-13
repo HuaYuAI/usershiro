@@ -27,17 +27,19 @@ public class UserMessage implements UserDetails {
 
     private String username;
 
-    private Integer userstatus;
+    private String phone;
+
+    private Integer userStatus;
 
     private String password;
 
     private String salt;
 
-    private Date registertime;
+    private Date registerTime;
 
-    private Date logintime;
+    private Date loginTime;
 
-    private String logouttime;
+    private String logoutTime;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

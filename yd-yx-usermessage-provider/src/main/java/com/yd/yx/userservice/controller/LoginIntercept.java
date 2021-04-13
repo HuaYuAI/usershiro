@@ -20,7 +20,8 @@ public class LoginIntercept extends HandlerInterceptorAdapter {
 
     private final String ACCESS_TOKEN = "access_token";
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object object){
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object){
         HandlerMethod handlerMethod = (HandlerMethod)object;
         if (isAnonymnous(handlerMethod)){
             return true;

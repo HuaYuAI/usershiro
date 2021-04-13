@@ -11,16 +11,11 @@ import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseD
 import com.yd.yx.userclient.api.service.UserMessageService;
 import com.yd.yx.userservice.service.JwtTokenService;
 import com.yd.yx.userservice.service.repository.UserMessageServiceImpl;
-import com.yd.yx.userservice.service.repository.entity.UserMessage;
 import com.yd.yx.userservice.utils.jwt.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @Slf4j
 @RestController
@@ -48,47 +43,25 @@ public class UserOptionController implements UserMessageService {
     }
 
     public BaseResponseDTO<Boolean> defaultStores(String message) {
-        log.info("调用超时");
-        return null;
-    }
-
-    @Override
-    @PostMapping("/user")
-    @ControllerLogs
-    public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser(@RequestBody RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
-        // 检测用户名
-        checkUsername(registeredUserMessageRequestDTO.getUserName());
-        // 保存用户
-        if (saveUser(registeredUserMessageRequestDTO) == null) {
-            throw new CommonException("500", "user.message.common.error");
-        }
-        ;
-        // 生成token
-        String token = "";
         BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-        baseResponseDTO.setCode("200");
-        baseResponseDTO.setData(new RegisteredUserMessageResponseDTO(token));
+        baseResponseDTO.setCode("500");
+        baseResponseDTO.setMessage("system.error.select.timeout");
         return baseResponseDTO;
     }
 
-    private UserMessage saveUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
-        Date date = new Date();
-        UserMessage userMessage = new UserMessage();
-        userMessage.setUsername(registeredUserMessageRequestDTO.getUserName());
-        // 生成盐值及密码
-        String salt = String.valueOf((Math.random() * 9 + 1) * 100000);
-        userMessage.setSalt(salt);
-        String password = DigestUtils.md5DigestAsHex((registeredUserMessageRequestDTO.getPassword() + salt).getBytes());
-        userMessage.setPassword(password);
-        userMessage.setLogintime(date);
-        userMessage.setRegistertime(date);
-        return userMessageRepository.save(userMessage);
+    @Override
+    @PostMapping("/user/register")
+    @ControllerLogs
+    public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser
+            (@RequestBody RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
+        return userMessageService.registeredUser(registeredUserMessageRequestDTO);
     }
 
     @Override
-    @PutMapping("/user")
+    @PutMapping("/user/editor")
     @ControllerLogs
     public BaseResponseDTO updateUserMessage(UpdateUserMessageRequestDTO updateUserMessageRequestDTO) {
+
         return null;
     }
 
@@ -103,11 +76,11 @@ public class UserOptionController implements UserMessageService {
     @PostMapping("/user/login")
     @ControllerLogs
     // 或者
-    @Secured("ROLE_admin")
+    // @Secured("ROLE_admin")
     // 并且
     // @PreAuthorize("hasRole('')")
     // 根据返回值判断
-    //@PostAuthorize("returnObject==1")
+    // @PostAuthorize("returnObject==1")
     public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
         jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
         return null;

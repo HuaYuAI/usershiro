@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class LoginUserMessageRequestDTO extends BaseRequestDTO implements Serializable {
 
     @NotNull
-    private String userName;
+    private String username;
 
     @NotNull
     private String password;

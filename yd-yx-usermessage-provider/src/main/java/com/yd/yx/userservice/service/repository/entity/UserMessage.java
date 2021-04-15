@@ -27,11 +27,15 @@ public class UserMessage implements UserDetails {
 
     private String username;
 
+    private String password;
+
     private String phone;
+
+    private Integer sex;
 
     private Integer userStatus;
 
-    private String password;
+    private String birthday;
 
     private String salt;
 
@@ -48,21 +52,21 @@ public class UserMessage implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

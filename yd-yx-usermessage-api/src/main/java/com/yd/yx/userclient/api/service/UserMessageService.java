@@ -39,9 +39,9 @@ public interface UserMessageService {
     @PostMapping(value = "/user/userContent")
     BaseResponseDTO userContent(@RequestBody ContentUserMessageRequestDTO contentUserMessageRequestDTO);
 
-    @PostMapping(value = "/user/userLogIn")
+    @PostMapping(value = "/user/userLogin")
     BaseResponseDTO userLogIn(@RequestBody LoginUserMessageRequestDTO loginUserMessageRequestDTO);
 
-    @PostMapping(value = "/user/userLogOut")
+    @PostMapping(value = "/user/userLogout")
     BaseResponseDTO userLogOut(@RequestBody LogOutUserMessageRequestDTO logOutUserMessageRequestDTO);
 }

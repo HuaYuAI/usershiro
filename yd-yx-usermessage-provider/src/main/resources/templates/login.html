@@ -20,7 +20,7 @@
 <!--登录注册表-->
 <div class="wel" id="from">
     <div class="box-2 le-1">
-        <form action="/user/login" method="post" datatype="">
+        <form action="/login" method="post" datatype="">
             <div class="flrg">
                     <h3>登录</h3>
                 <div class="a">
@@ -30,7 +30,8 @@
                 <div class="a">
                     <!--<label>密码：</label>-->
                     <input type="password" name="password" class="in-1" placeholder="请输入密码">
-                    <input th:name="${_csrf.parameterName}" th:value = "${_csrf.token}">
+<!--                    <input th:name="${_csrf.parameterName}" th:value = "${_csrf.token}">-->
+
                 </div>
                 <div class="a">
                     <button type="submit">登录</button>

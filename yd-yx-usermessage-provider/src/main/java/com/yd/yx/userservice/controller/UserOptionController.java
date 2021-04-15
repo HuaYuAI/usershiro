@@ -11,11 +11,21 @@ import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseD
 import com.yd.yx.userclient.api.service.UserMessageService;
 import com.yd.yx.userservice.service.JwtTokenService;
 import com.yd.yx.userservice.service.repository.UserMessageServiceImpl;
-import com.yd.yx.userservice.utils.jwt.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -26,6 +36,11 @@ public class UserOptionController implements UserMessageService {
 
     @Autowired
     JwtTokenService jwtTokenService;
+
+    @GetMapping("/user/hello")
+    public String gethello(){
+        return "hello xian";
+    }
 
     @Override
     @GetMapping("/user/check/{username}")
@@ -50,8 +65,8 @@ public class UserOptionController implements UserMessageService {
     }
 
     @Override
-    @PostMapping("/user/register")
     @ControllerLogs
+    @PostMapping("/user/register")
     public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser
             (@RequestBody RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
         return userMessageService.registeredUser(registeredUserMessageRequestDTO);
@@ -82,8 +97,36 @@ public class UserOptionController implements UserMessageService {
     // 根据返回值判断
     // @PostAuthorize("returnObject==1")
     public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
-        jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
+        // jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUsername()));
+        // "访问的资源需要身份认证！";
         return null;
+    }
+
+    private RequestCache requestCache = new HttpSessionRequestCache();
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+    @GetMapping("/authentication/require")
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        SavedRequest savedRequest = requestCache.getRequest(request, response);
+        if (savedRequest != null) {
+            String targetUrl = savedRequest.getRedirectUrl();
+            if (StringUtils.endsWithIgnoreCase(targetUrl, ".html")){
+                redirectStrategy.sendRedirect(request, response, "/login.html");
+                return null;
+            }
+        }
+        return "访问的资源需要身份认证！";
+    }
+
+//    @GetMapping("index")
+//    public Object index(){
+//        return SecurityContextHolder.getContext().getAuthentication();
+//    }
+
+    @GetMapping("index")
+    public Object index(Authentication authentication) {
+        return authentication;
     }
 
     @Override

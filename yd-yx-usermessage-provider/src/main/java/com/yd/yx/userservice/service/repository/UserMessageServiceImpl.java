@@ -10,18 +10,17 @@ import com.yd.yx.userservice.service.repository.dao.UserMessageRepository;
 import com.yd.yx.userservice.service.repository.entity.UserMessage;
 import com.yd.yx.userservice.utils.jwt.JwtInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.util.DigestUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 @Slf4j
-@RestController
+@Service
 public class UserMessageServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -29,6 +28,9 @@ public class UserMessageServiceImpl implements UserDetailsService {
 
     @Autowired
     JwtTokenService jwtTokenService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public BaseResponseDTO<Boolean> checkUsername(String username) {
         if (StringUtils.isEmpty(username)) {
@@ -46,7 +48,7 @@ public class UserMessageServiceImpl implements UserDetailsService {
 
     public BaseResponseDTO<RegisteredUserMessageResponseDTO> registeredUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
         // 检测用户名
-        checkUsername(registeredUserMessageRequestDTO.getUserName());
+        checkUsername(registeredUserMessageRequestDTO.getUsername());
         // 保存用户
         if (saveUser(registeredUserMessageRequestDTO) == null) {
             throw new CommonException("500", "user.message.common.error");
@@ -60,16 +62,9 @@ public class UserMessageServiceImpl implements UserDetailsService {
     }
 
     private UserMessage saveUser(RegisteredUserMessageRequestDTO registeredUserMessageRequestDTO) {
-        Date date = new Date();
         UserMessage userMessage = new UserMessage();
-        userMessage.setUsername(registeredUserMessageRequestDTO.getUserName());
-        // 生成盐值及密码
-        String salt = String.valueOf((Math.random() * 9 + 1) * 100000);
-        userMessage.setSalt(salt);
-        String password = DigestUtils.md5DigestAsHex((registeredUserMessageRequestDTO.getPassword() + salt).getBytes());
-        userMessage.setPassword(password);
-        userMessage.setLogintime(date);
-        userMessage.setRegistertime(date);
+        BeanUtils.copyProperties(registeredUserMessageRequestDTO,userMessage);
+        userMessage.setPassword(passwordEncoder.encode(registeredUserMessageRequestDTO.getPassword()));
         return userMessageRepository.save(userMessage);
     }
 
@@ -84,7 +79,7 @@ public class UserMessageServiceImpl implements UserDetailsService {
     }
 
     public BaseResponseDTO<LoginUserMessageResponseDTO> userLogIn(LoginUserMessageRequestDTO loginUserMessageRequestDTO) {
-        jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUserName()));
+        jwtTokenService.generatorToken(new JwtInfo(loginUserMessageRequestDTO.getUsername()));
         return null;
     }
 
@@ -94,7 +89,8 @@ public class UserMessageServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        UserMessage userMessage = userMessageRepository.findByUsername(username);
+        return userMessage;
     }
 
 }

@@ -10,10 +10,10 @@ import java.io.Serializable;
 @Data
 public class RegisteredUserMessageRequestDTO extends LoginUserMessageRequestDTO implements Serializable {
 
-    private String phoneNumber;
+    private String phone;
 
     private String birthday;
 
-    private String sex;
+    private Integer sex;
 
 }

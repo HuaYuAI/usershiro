@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.service.repository;
+package com.yd.yx.userservice.service.impl;
 
 import com.yd.yx.client.dto.BaseResponseDTO;
 import com.yd.yx.common.exception.CommonException;

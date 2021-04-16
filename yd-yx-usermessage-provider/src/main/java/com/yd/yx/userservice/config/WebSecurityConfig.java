@@ -1,5 +1,10 @@
 package com.yd.yx.userservice.config;
 
+import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeConfig;
+import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeOneFilter;
+import com.yd.yx.userservice.config.login.filter.LoginAuthenticationFailure;
+import com.yd.yx.userservice.config.login.filter.LoginAuthenticationSucess;
+import com.yd.yx.userservice.service.impl.UserMessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +14,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * @ClassName WebSecurityConfig
@@ -27,15 +37,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     LoginAuthenticationFailure loginAuthenticationFailure;
 
+    @Autowired
+    UserMessageServiceImpl userMessageServiceImpl;
+
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
+
+    @Autowired
+    AuthenticationCodeOneFilter authenticationCodeOneFilter;
+
+    @Autowired
+    AuthenticationCodeConfig authenticationCodeConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.headers().contentTypeOptions().disable();
         http.headers().frameOptions().sameOrigin();
-        http
-            .authorizeRequests()// 授权配置
-                .antMatchers("/", "/home","/login","/user/register","/error","/authentication/require","/login.html",
-                        "/favicon.ico","/templates/**", "/img/**", "/css/**")
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加验证码校验过滤器
+                .addFilterBefore(authenticationCodeOneFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()// 授权配置
+                .antMatchers("/", "/home","/login","/user/register",
+                        "/error","/authentication/require",
+                        "/login.html","/register.html","/loginemail.html",
+                        "/favicon.ico","/templates/**",
+                        "/img/**", "/css/**","/js/**","/code/**")
                 .permitAll()
                 .anyRequest()// 所有请求
                 .authenticated()// 都需要认证
@@ -51,17 +77,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginAuthenticationFailure) // 处理登录失败
                 .permitAll()
                 //.loginProcessingUrl("/user/login").permitAll().failureForwardUrl("/login123").permitAll()
+                .and().rememberMe()
+                .tokenRepository(persistentTokenRepository()) // 配置 token 持久化仓库
+                .tokenValiditySeconds(60*60*24*7) // remember 过期时间，单为秒
+                .userDetailsService(userMessageServiceImpl) // 处理自动登录逻辑
             .and()
                 //csrf 校验
                 .csrf().disable()
+                .apply(authenticationCodeConfig)
                 // .csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository())
-                //.and()
+            .and()
                 .logout().logoutUrl("/logout")
                 .permitAll();
 
 //        @Override
 //        protected void configure(HttpSecurity http) throws Exception {
-//            http.formLogin() // 表单登录
+//
+//            http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加验证码校验过滤器
+//                    .addFilterBefore(smsCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加短信验证码校验过滤器
+//                    .formLogin() // 表单登录
 //                    // http.httpBasic() // HTTP Basic
 //                    .loginPage("/authentication/require") // 登录跳转 URL
 //                    .loginProcessingUrl("/login") // 处理表单登录 URL
@@ -69,10 +103,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                    .failureHandler(authenticationFailureHandler) // 处理登录失败
 //                    .and()
 //                    .authorizeRequests() // 授权配置
-//                    .antMatchers("/authentication/require", "/login.html").permitAll() // 登录跳转 URL 无需认证
+//                    .antMatchers("/authentication/require",
+//                            "/login.html",
+//                            "/code/image","/code/sms").permitAll() // 无需认证的请求路径
 //                    .anyRequest()  // 所有请求
 //                    .authenticated() // 都需要认证
-//                    .and().csrf().disable();
+//                    .and()
+//                    .csrf().disable()
+//                    .apply(smsAuthenticationConfig); // 将短信验证码认证配置加到 Spring Security 中
 //        }
 
     }
@@ -80,6 +118,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+//        jdbcTokenRepository.setCreateTableOnStartup(true);
+        jdbcTokenRepository.setCreateTableOnStartup(false);
+//        CREATE TABLE persistent_logins (
+//                username VARCHAR (64) NOT NULL,
+//                series VARCHAR (64) PRIMARY KEY,
+//                token VARCHAR (64) NOT NULL,
+//                last_used TIMESTAMP NOT NULL
+//        )
+        return jdbcTokenRepository;
     }
 //    @Bean
 //    @Override

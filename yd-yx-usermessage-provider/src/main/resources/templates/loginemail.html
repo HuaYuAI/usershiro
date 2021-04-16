@@ -8,10 +8,19 @@
 </head>
 <body>
 
-<script>
+<script type="text/javascript">
+
     function change(){
         var img = document.getElementById("imgid");
         img.src = "/code/image?xxx="+new Date().getTime();
+    }
+
+    function getkey(a) {
+        var pms =document.getElementById("email").value;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","/code/email/" + pms,true);
+        xmlhttp.send();
     }
 </script>
 
@@ -29,17 +38,17 @@
 <!--登录注册表-->
 <div class="wel" id="from">
     <div class="box-2 le-1">
-        <form action="/login" method="post" datatype="">
+        <form action="/user/login" method="post" datatype="">
             <div class="flrg">
-                    <h3>登录</h3>
+                    <h3>邮箱登录</h3>
                 <div class="a">
-                    <!--<label>账号：</label>-->
-                    <input type="text" name="username" class="in-1" placeholder="请输入账号">
+                    <input type="text" name="email" id="email" class="in-1" placeholder="请输入邮箱账号" required="required" />
                 </div>
                 <div class="a">
-                    <!--<label>密码：</label>-->
-                    <input type="password" name="password" class="in-1" placeholder="请输入密码">
-<!--                    <input th:name="${_csrf.parameterName}" th:value = "${_csrf.token}">-->
+                    <a href="javascript:getkey(this)" id = "emailhref">获取验证码</a>
+                </div>
+                <div class="a">
+                    <input type="password" name="password" class="in-1" placeholder="请输入验证码">
                 </div>
                 <div class="a">
                     <span style="display: inline">
@@ -48,13 +57,9 @@
                     </span>
                 </div>
                 <div class="a">
-                    <input type="checkbox" name="remember-me"/> 记住我
-                    <a href="loginemail.html">邮箱登录</a>
-                </div>
-                <div class="a">
                     <button type="submit">登录</button>
                     <button type="button"
-                            οnclick="javascript:window.location.href='register.html'">注册</button>
+                            οnclick="javascript:window.location.href='login.html'">帐号登录</button>
                 </div>
             </div>
         </form>

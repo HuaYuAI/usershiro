@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>注册</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 
 <script>
     function change(){
         var img = document.getElementById("imgid");
-        img.src = "/code/image?xxx="+new Date().getTime();
+        img.src = "/code/image";
     }
 </script>
 
@@ -31,7 +30,7 @@
     <div class="box-2 le-1">
         <form action="/login" method="post" datatype="">
             <div class="flrg">
-                    <h3>登录</h3>
+                    <h3>注册</h3>
                 <div class="a">
                     <!--<label>账号：</label>-->
                     <input type="text" name="username" class="in-1" placeholder="请输入账号">
@@ -42,19 +41,19 @@
 <!--                    <input th:name="${_csrf.parameterName}" th:value = "${_csrf.token}">-->
                 </div>
                 <div class="a">
+                    <!--<label>密码：</label>-->
+                    <input type="password" name="password" class="in-1" placeholder="请再次输入密码">
+                    <!--                    <input th:name="${_csrf.parameterName}" th:value = "${_csrf.token}">-->
+                </div>
+
+                <div class="a">
                     <span style="display: inline">
-                        <a href="javascript:change()"><img id="imgid" src="/code/image"></a>
+                        <a href="javascript:change()"><img id="imgid" src="/code/image"><br></a>
                         <input type="text" name="captcha" placeholder="验证码" style="width: 40%;"/>
                     </span>
                 </div>
                 <div class="a">
-                    <input type="checkbox" name="remember-me"/> 记住我
-                    <a href="loginemail.html">邮箱登录</a>
-                </div>
-                <div class="a">
-                    <button type="submit">登录</button>
-                    <button type="button"
-                            οnclick="javascript:window.location.href='register.html'">注册</button>
+                    <button type="submit">注册</button>
                 </div>
             </div>
         </form>

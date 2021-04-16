@@ -10,7 +10,7 @@ import com.yd.yx.userclient.api.dto.user.response.LoginUserMessageResponseDTO;
 import com.yd.yx.userclient.api.dto.user.response.RegisteredUserMessageResponseDTO;
 import com.yd.yx.userclient.api.service.UserMessageService;
 import com.yd.yx.userservice.service.JwtTokenService;
-import com.yd.yx.userservice.service.repository.UserMessageServiceImpl;
+import com.yd.yx.userservice.service.impl.UserMessageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

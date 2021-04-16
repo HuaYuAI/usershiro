@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.config;
+package com.yd.yx.userservice.config.login.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+@Component                 // SavedRequestAwareAuthenticationSuccessHandler SimpleUrlAuthenticationFailureHandler
 public class LoginAuthenticationFailure implements AuthenticationFailureHandler {
     @Autowired
     private ObjectMapper mapper;

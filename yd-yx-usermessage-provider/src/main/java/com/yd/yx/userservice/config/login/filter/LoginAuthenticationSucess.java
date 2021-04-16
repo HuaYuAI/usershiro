@@ -1,4 +1,4 @@
-package com.yd.yx.userservice.config;
+package com.yd.yx.userservice.config.login.filter;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 @EnableFeignClients
 @EnableCircuitBreaker
 @Controller
+//@Import(AbstractRedisClient.class)
 public class UserMessageProviderBootstrap {
 
     public static void main(String[] args) {

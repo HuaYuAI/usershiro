@@ -1,11 +1,34 @@
 server:
   port: 1112
+  session:
+    timeout: 3600
 spring:
   #  当发布后找不到静态文件时刻使用此注释
   resources:
     static-locations: /templates/**
   application:
     name: usermessage-provider
+#  session:
+#    store-type: redis
+#  main:
+#    allow-bean-definition-overriding: true
+  session:
+    redis:
+      flush-mode: on_save
+      namespace: session.example
+      cleanup-cron: 0 * * * * *
+    store-type: redis
+    timeout: 1800
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 100
+        max-wait: 10
+        max-idle: 10
+        min-idle: 10
+    database: 0
   mvc:
     static-path-pattern: /templates/**
   #模板引擎

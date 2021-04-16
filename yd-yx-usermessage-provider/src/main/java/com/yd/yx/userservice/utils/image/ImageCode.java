@@ -3,9 +3,10 @@ package com.yd.yx.userservice.utils.image;
 import lombok.Data;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 @Data
-public class ImageCode {
+public class ImageCode implements Serializable {
 
     private BufferedImage image;
 

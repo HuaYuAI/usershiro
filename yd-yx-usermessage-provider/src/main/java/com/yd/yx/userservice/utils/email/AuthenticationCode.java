@@ -2,9 +2,10 @@ package com.yd.yx.userservice.utils.email;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 @Data
-public class AuthenticationCode {
+public class AuthenticationCode implements Serializable {
 
     private String code;
 

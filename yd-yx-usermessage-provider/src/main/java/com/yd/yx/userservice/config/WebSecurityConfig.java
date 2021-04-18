@@ -1,6 +1,8 @@
 package com.yd.yx.userservice.config;
 
+import com.yd.yx.userservice.config.login.AuthenticationSessionExpiredStrategy;
 import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeConfig;
+import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeLogOutSuccessHandler;
 import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeOneFilter;
 import com.yd.yx.userservice.config.login.filter.LoginAuthenticationFailure;
 import com.yd.yx.userservice.config.login.filter.LoginAuthenticationSucess;
@@ -52,11 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AuthenticationCodeConfig authenticationCodeConfig;
 
-//    @Autowired
-//    AuthenticationSessionExpiredStrategy authenticationSessionExpiredStrategy;
-//
-//    @Autowired
-//    AuthenticationCodeLogOutSuccessHandler logOutSuccessHandler;
+    @Autowired
+    AuthenticationSessionExpiredStrategy authenticationSessionExpiredStrategy;
+
+    @Autowired
+    AuthenticationCodeLogOutSuccessHandler logOutSuccessHandler;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -65,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加验证码校验过滤器
                 .addFilterBefore(authenticationCodeOneFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()// 授权配置
-                .antMatchers("/", "/home","/login","/user/register",
+                .antMatchers("/", "/home","/login","/logout","/user/register",
                         "/error","/authentication/require",
                         "/login.html","/register.html","/loginemail.html",
                         "/favicon.ico","/templates/**",
@@ -85,7 +87,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginAuthenticationFailure) // 处理登录失败
                 .permitAll()
                 //.loginProcessingUrl("/user/login").permitAll().failureForwardUrl("/login123").permitAll()
-                .and().rememberMe()
+            .and()
+                .rememberMe()
                 .tokenRepository(persistentTokenRepository()) // 配置 token 持久化仓库
                 .tokenValiditySeconds(60*60*24*7) // remember 过期时间，单为秒
                 .userDetailsService(userMessageServiceImpl) // 处理自动登录逻辑
@@ -96,7 +99,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository())
             .and()
                 .logout().logoutUrl("/logout")
-                .permitAll();
+                // .logoutSuccessUrl("/signout/success")
+                .logoutSuccessHandler(logOutSuccessHandler)
+                .deleteCookies("JSESSIONID")
+            .and()
+                .sessionManagement() // 添加 Session管理器
+                .invalidSessionUrl("/session/invalid") // Session失效后跳转到这个链接
+                .maximumSessions(2)
+                .maxSessionsPreventsLogin(true)
+                .expiredSessionStrategy(authenticationSessionExpiredStrategy);
+
 
 //        @Override
 //        protected void configure(HttpSecurity http) throws Exception {

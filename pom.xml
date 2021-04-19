@@ -11,6 +11,7 @@
 		<module>yd-yx-usermessage-consumer</module>
 		<module>yd-yx-gateway</module>
 		<module>yd-yx-manage</module>
+		<module>yd-yx-oauth</module>
 	</modules>
 
 	<parent>

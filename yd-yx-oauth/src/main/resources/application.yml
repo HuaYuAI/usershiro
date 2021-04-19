@@ -1,0 +1,82 @@
+server:
+  port: 1113
+  session:
+    timeout: 3600
+spring:
+  #  当发布后找不到静态文件时刻使用此注释
+  resources:
+    static-locations: /templates/**
+  application:
+    name: usermessage-oauth
+#  session:
+#    store-type: redis
+#  main:
+#    allow-bean-definition-overriding: true
+  session:
+    redis:
+      flush-mode: on_save
+      namespace: session.example
+      cleanup-cron: 0 * * * * *
+    store-type: redis
+    timeout: 1800
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 100
+        max-wait: 10
+        max-idle: 10
+        min-idle: 10
+    database: 0
+  mvc:
+    static-path-pattern: /templates/**
+  #模板引擎
+  thymeleaf:
+    prefix: classpath:/templates/
+    mode: HTML5
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/usershiro?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+# 安全失效
+management:
+  security:
+    enabled: false
+# 取消服务器自我注册
+eureka:
+  server:
+    port: 9090
+# 服务用于注册
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+security:
+  oauth2:
+    client:
+      client-id: usermessage-oauth
+      client-secret: 123456
+      registered-redirect-uri: http://localhost:1113/health

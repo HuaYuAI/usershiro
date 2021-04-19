@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-public class JWTokenConfig {
+public class JwtTokenConfig {
     @Bean
     public TokenStore jwtTokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());

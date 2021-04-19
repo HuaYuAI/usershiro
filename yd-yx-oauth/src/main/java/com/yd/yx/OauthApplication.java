@@ -27,5 +27,5 @@ public class OauthApplication {
 //    "scope": "all",
 //    "jti": "4eea797b-8735-4900-8052-2bdc129dba51"
 //}
-
+// curl -X POST "localhost:1113/oauth/token" --header "Authorization":"Basic dGVzdDE6dGVzdDExMTE=" -d "grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk2OTM5NzAsInVzZXJfbmFtZSI6IjEyMyIsImp0aSI6Ijg4YzQ4MzY5LTA0NzEtNDE1NS04MWJlLTZlZTljZjhjNTI0ZSIsImNsaWVudF9pZCI6InRlc3QxIiwic2NvcGUiOlsiYWxsIl0sImF0aSI6ImRiODBlN2U5LTRkZGMtNGRkNC04NjlmLWEwMzU0NmViMzBhZSJ9.ZVPv75AoQRurj_jEpAvGF1ipKMfNgMCxFZpGTfQ21AY"
 }

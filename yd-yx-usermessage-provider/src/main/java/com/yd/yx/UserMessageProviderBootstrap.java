@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.stereotype.Controller;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * Created by huayu on 2019/8/15.
@@ -14,8 +14,7 @@ import org.springframework.stereotype.Controller;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableCircuitBreaker
-@Controller
-//@Import(AbstractRedisClient.class)
+@EnableRedisHttpSession
 public class UserMessageProviderBootstrap {
 
     public static void main(String[] args) {

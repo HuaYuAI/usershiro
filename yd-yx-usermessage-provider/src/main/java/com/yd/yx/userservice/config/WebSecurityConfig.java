@@ -1,6 +1,7 @@
 package com.yd.yx.userservice.config;
 
 import com.yd.yx.userservice.config.login.AuthenticationSessionExpiredStrategy;
+import com.yd.yx.userservice.config.login.authentication.code.AuthenticationAccessDeniedHandler;
 import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeConfig;
 import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeLogOutSuccessHandler;
 import com.yd.yx.userservice.config.login.authentication.code.AuthenticationCodeOneFilter;
@@ -20,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import javax.sql.DataSource;
 
@@ -32,7 +32,6 @@ import javax.sql.DataSource;
  **/
 @Configuration
 @EnableWebSecurity
-@EnableRedisHttpSession
 @EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -59,15 +58,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     AuthenticationCodeLogOutSuccessHandler logOutSuccessHandler;
+
+    @Autowired
+    AuthenticationAccessDeniedHandler authenticationAccessDeniedHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.headers().contentTypeOptions().disable();
         http.headers().frameOptions().sameOrigin();
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加验证码校验过滤器
+        http.exceptionHandling()
+                .accessDeniedHandler(authenticationAccessDeniedHandler)
+            .and().addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加验证码校验过滤器
                 .addFilterBefore(authenticationCodeOneFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()// 授权配置
-                .antMatchers("/", "/home","/login","/logout","/user/register",
+                .antMatchers("/", "/home","/login","/logout",
+                        "/user/register","/oauth/token",
                         "/error","/authentication/require",
                         "/login.html","/register.html","/loginemail.html",
                         "/favicon.ico","/templates/**",
@@ -85,7 +91,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")// 处理表单登录 URL
                 .successHandler(loginAuthenticationSucess) // 处理登录成功
                 .failureHandler(loginAuthenticationFailure) // 处理登录失败
-                .permitAll()
+                //.permitAll()
                 //.loginProcessingUrl("/user/login").permitAll().failureForwardUrl("/login123").permitAll()
             .and()
                 .rememberMe()

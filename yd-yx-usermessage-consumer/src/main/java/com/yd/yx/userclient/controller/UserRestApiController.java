@@ -8,7 +8,6 @@ import com.yd.yx.userclient.api.service.UserMessageService;
 import com.yd.yx.userclient.vo.user.RegisterUserRequestVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +43,11 @@ public class UserRestApiController {
         return ResultUtil.success(baseResponseDTO.getData());
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(StringUtils.isNumeric("11.0"));
+    @GetMapping("login")
+    public String login() {
+        return "login";
     }
+
 /*    @Bean
     public Contract feignContract() {
         return new Contract.Default();

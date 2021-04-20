@@ -2,6 +2,7 @@ server:
   port: 1113
   session:
     timeout: 3600
+
 spring:
   #  当发布后找不到静态文件时刻使用此注释
   resources:
@@ -74,9 +75,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9000/eureka
-security:
-  oauth2:
-    client:
-      client-id: usermessage-oauth
-      client-secret: 123456
-      registered-redirect-uri: http://localhost:1113/health

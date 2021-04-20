@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -47,22 +48,50 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenStore(jwtTokenStore).accessTokenConverter(jwtAccessTokenConverter).tokenEnhancer(enhancerChain);
 
     }
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) {
+        security.tokenKeyAccess("isAuthenticated()"); // 获取密钥需要身份认证
+    }
 
     // BaseClientDetails
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("test1")
-                .secret(passwordEncoder.encode("test1111"))
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(864000)
-                .scopes("all", "a", "b", "c")
-                .authorizedGrantTypes("password", "refresh_token")
-                .redirectUris("http://localhost:1113/health")
+                    .withClient("yd-yx-gateway")
+                    .secret(passwordEncoder.encode("test1111"))
+                    .accessTokenValiditySeconds(3600)
+                    .refreshTokenValiditySeconds(864000)
+                    .scopes("all", "a", "b", "c")
+                    .authorizedGrantTypes("password", "refresh_token","authorization_code")
+                    .autoApprove(true)
+                    .redirectUris("http://127.0.0.1:9090/gateway/login")
                 .and()
-                .withClient("test2")
-                .secret(passwordEncoder.encode("test2222"))
-                .accessTokenValiditySeconds(7200);
+                    .withClient("usermessage-consumer")
+                    .secret(passwordEncoder.encode("test1111"))
+                    .accessTokenValiditySeconds(7200)
+                    .scopes("all", "a", "b", "c")
+                    .authorizedGrantTypes("password", "refresh_token","authorization_code")
+                    .autoApprove(true).redirectUris("http://127.0.0.1:4475/usermessage-consumer/login");
     }
+
+//    @Override
+//    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients.inMemory()
+//                .withClient("app-a")
+//                .secret(passwordEncoder.encode("app-a-1234"))
+//                .authorizedGrantTypes("refresh_token","authorization_code")
+//                .accessTokenValiditySeconds(3600)
+//                .scopes("all")
+//                .autoApprove(true)
+//                .redirectUris("http://127.0.0.1:9090/app1/login")
+//                .and()
+//                .withClient("app-b")
+//                .secret(passwordEncoder.encode("app-b-1234"))
+//                .authorizedGrantTypes("refresh_token","authorization_code")
+//                .accessTokenValiditySeconds(7200)
+//                .scopes("all")
+//                .autoApprove(true)
+//                .redirectUris("http://127.0.0.1:9091/app2/login");
+//    }
 
 }

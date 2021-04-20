@@ -1,0 +1,31 @@
+security:
+  oauth2:
+    client:
+      client-id: yd-yx-gateway
+      client-secret: test1111
+      user-authorization-uri: http://127.0.0.1:1113/oauth/authorize
+      access-token-uri: http://127.0.0.1:1113/oauth/token
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:1113/oauth/token_key
+server:
+  port: 9090
+  servlet:
+    context-path: /gateway
+spring:
+  application:
+    name: yd-yx-gateway
+  #模板引擎
+  thymeleaf:
+    prefix: classpath:/templates/
+    mode: HTML5
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+eureka:
+  # 服务用于注册
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
